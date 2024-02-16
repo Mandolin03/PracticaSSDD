@@ -4,11 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PracticaSsddApplication {
+public class PracticeSSDDApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PracticaSsddApplication.class, args);
-		System.out.println("Hwllo world!");
+		SpringApplication.run(PracticeSSDDApplication.class, args);
 	}
 
 }
