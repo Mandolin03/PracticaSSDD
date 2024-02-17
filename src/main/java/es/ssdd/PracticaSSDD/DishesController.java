@@ -7,24 +7,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
 public class DishesController {
 
-        private Map<Long, es.ssdd.PracticaSSDD.Dishes> dishes = new ConcurrentHashMap<>();
+        private ConcurrentMap<Long, Dish> dishes = new ConcurrentHashMap<>();
         private AtomicLong counter = new AtomicLong();
 
-        @GetMapping("/add-dishes")
-        public String listDishes(Model model) {
-            model.addAttribute("dishes", dishes.values());
-            return "add-dishes";
-
+        public String createDish(Dish dish){
+            Long id = counter.incrementAndGet();
+            dish.setId(id);
+            dishes.put(id, dish);
+            return "Plato creado con éxito";
         }
 
-    @GetMapping("/dishes/add")
-    public String showFormAddDishes(Model model) {
-        model.addAttribute("dishes", new Dishes());
-        return "add-dishes";
+        @GetMapping("/dishes")
+        public String listDishes(Model model) {
+            model.addAttribute("dishes", dishes.values());
+            return "dishes";
+        }
+
+        @GetMapping("/add-dish")
+        public String showFormAddDishes(Model model) {
+            return "add-dish";
+        }
+
+    @PostMapping("/add-dish")
+    public String processFormAddDishes(Dish dish, Model model) {
+        String success = createDish(dish);
+        model.addAttribute("success", success);
+        return "add-dish";
     }
 }

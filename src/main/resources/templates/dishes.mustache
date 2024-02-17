@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menú del Restaurante SSDD</title>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+<body>
+<h1>Carta</h1>
+<div class="contenedor">
+    <ul>
+        {{#dishes}}
+            <h3>{{name}}</h3>
+            <p>Precio: {{price}}€</p>
+        {{/dishes}}
+    </ul>
+</div>
+</body>
+</html>
