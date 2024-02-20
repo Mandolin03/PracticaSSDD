@@ -13,26 +13,26 @@ import java.util.concurrent.atomic.AtomicLong;
 @Controller
 public class DishesController {
 
-        private ConcurrentMap<Long, Dish> dishes = new ConcurrentHashMap<>();
-        private AtomicLong counter = new AtomicLong();
+    private ConcurrentMap<Long, Dish> dishes = new ConcurrentHashMap<>();
+    private AtomicLong counter = new AtomicLong();
 
-        public String createDish(Dish dish){
-            Long id = counter.incrementAndGet();
-            dish.setId(id);
-            dishes.put(id, dish);
-            return "Plato creado con éxito";
-        }
+    public String createDish(Dish dish) {
+        Long id = counter.incrementAndGet();
+        dish.setId(id);
+        dishes.put(id, dish);
+        return "Plato creado con éxito";
+    }
 
-        @GetMapping("/dishes")
-        public String listDishes(Model model) {
-            model.addAttribute("dishes", dishes.values());
-            return "dishes";
-        }
+    @GetMapping("/dishes")
+    public String listDishes(Model model) {
+        model.addAttribute("dishes", dishes.values());
+        return "dishes";
+    }
 
-        @GetMapping("/add-dish")
-        public String showFormAddDishes(Model model) {
-            return "add-dish";
-        }
+    @GetMapping("/add-dish")
+    public String showFormAddDishes(Model model) {
+        return "add-dish";
+    }
 
     @PostMapping("/add-dish")
     public String processFormAddDishes(Dish dish, Model model) {

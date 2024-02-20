@@ -5,16 +5,14 @@
     <link rel="stylesheet" type="text/css" href="Style.css">
 </head>
 <body>
-<h1>Bienvenido al restaurante SSDD</h1>
+<h1>Ingredientes</h1>
 <div class="contenedor">
-    <h2>Platos destacados</h2>
-
-    <h2>Menú del día</h2>
-
-    <h2>Valoraciones</h2>
-
-    <h2>Dónde encontrarnos</h2>
-
+    <ul>
+        {{#ingredients}}
+            <h3>{{name}}</h3>
+            <p>Precio: {{price}}€</p>
+        {{/ingredients}}
+    </ul>
 </div>
 </body>
 </html>

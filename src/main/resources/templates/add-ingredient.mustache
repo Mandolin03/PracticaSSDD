@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+<body>
+    <h1>Añadir nuevo ingrediente</h1>
+    <form name="ingredientForm" action="/add-ingredient" method="post">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="category">Categoría:</label>
+        <input type="text" id="category" name="category"><br><br>
+        <label for="price">Precio:</label>
+        <input id="price" name="price"><br><br>
+        <input type="submit" value="Agregar">
+    </form>
+</body>
+</html>
