@@ -7,7 +7,6 @@ public class Dish {
     private String name;
     private String category;
     private ArrayList<Ingredient> ingredients;
-    private ArrayList<Allergen> allergens;
     private Double price;
     //TODO add image
 
@@ -19,7 +18,6 @@ public class Dish {
         this.name = name;
         this.category = category;
         this.ingredients = ingredients;
-        this.allergens = allergens;
         this.price = price;
     }
 
@@ -55,13 +53,6 @@ public class Dish {
         this.ingredients = ingredients;
     }
 
-    public ArrayList<Allergen> getAllergens() {
-        return allergens;
-    }
-
-    public void setAllergens(ArrayList<Allergen> allergens) {
-        this.allergens = allergens;
-    }
 
     public Double getPrice() {
         return price;

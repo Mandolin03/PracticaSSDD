@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
-public class IngredientsController {
+public class IngredientController {
     private AtomicLong counter = new AtomicLong();
     private ConcurrentMap<Long, Ingredient> ingredients = new ConcurrentHashMap<>();
 
