@@ -1,21 +1,21 @@
 body {
-    font-family: 'Arial', sans-serif; /* Cambia la fuente según tus preferencias */
-    background-color: #f4f4f4; /* Cambia el color de fondo si lo deseas */
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     text-align: center;
 }
 
 h1 {
-    color: #8B4513; /* Cambia el color del texto según tus preferencias */
-    font-size: 3em; /* Ajusta el tamaño del texto según tus preferencias */
-    margin-top: 50px; /* Ajusta el margen superior según tus preferencias */
+    color: #8B4513;
+    font-size: 3em;
+    margin-top: 50px;
 }
 
 h2{
-    color: #8B4513; /* Cambia el color del texto según tus preferencias */
-    padding: 10px; /* Ajusta el relleno según sea necesario */
-    border-radius: 5px; /* Agrega esquinas redondeadas */
+    color: #8B4513;
+    padding: 10px;
+    border-radius: 5px;
     text-align: center;
 }
 

@@ -7,19 +7,19 @@ public class Dish {
     private String name;
     private String category;
     private ArrayList<Ingredient> ingredients;
-    private ArrayList<Ingredient> allergens;
+    private ArrayList<Allergen> allergens;
     private Double price;
     //TODO add image
 
     public Dish() {
     }
 
-    public Dish(Long id, String name, String category, ArrayList<Ingredient> ingredients, ArrayList<Ingredient> allegens, Double price) {
+    public Dish(Long id, String name, String category, ArrayList<Ingredient> ingredients, ArrayList<Allergen> allergens, Double price) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.ingredients = ingredients;
-        this.allergens = allegens;
+        this.allergens = allergens;
         this.price = price;
     }
 
@@ -55,11 +55,11 @@ public class Dish {
         this.ingredients = ingredients;
     }
 
-    public ArrayList<Ingredient> getAllergens() {
+    public ArrayList<Allergen> getAllergens() {
         return allergens;
     }
 
-    public void setAllergens(ArrayList<Ingredient> allergens) {
+    public void setAllergens(ArrayList<Allergen> allergens) {
         this.allergens = allergens;
     }
 
