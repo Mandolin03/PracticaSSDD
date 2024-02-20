@@ -1,4 +1,4 @@
-package es.ssdd.PracticaSSDD;
+package es.ssdd.PracticaSSDD.data;
 
 import java.util.ArrayList;
 

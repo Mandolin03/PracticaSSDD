@@ -1,5 +1,6 @@
-package es.ssdd.PracticaSSDD;
+package es.ssdd.PracticaSSDD.controller;
 
+import es.ssdd.PracticaSSDD.data.Ingredient;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

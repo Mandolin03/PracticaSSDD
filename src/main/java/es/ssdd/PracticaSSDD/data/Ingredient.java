@@ -1,4 +1,4 @@
-package es.ssdd.PracticaSSDD;
+package es.ssdd.PracticaSSDD.data;
 
 public class Ingredient {
     private Long id;
