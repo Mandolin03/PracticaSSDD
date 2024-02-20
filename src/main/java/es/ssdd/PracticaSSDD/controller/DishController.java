@@ -21,7 +21,7 @@ public class DishController {
     }
 
     @GetMapping("/add-dish")
-    public String showFormAddDishes(Model model) {
+    public String showFormAddDishes() {
         return "add-dish";
     }
 
