@@ -39,8 +39,8 @@ public class DishController {
     public String processFormAddDishes(Dish dish, Model model) {
         String success = createDish(dish);
         model.addAttribute("success", success);
-        return "redirect:/";
+        return "redirect:/dishes";
     }
 
-    
+
 }

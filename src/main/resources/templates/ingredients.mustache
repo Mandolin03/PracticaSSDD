@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Home</title>
+    <title>Ingredientes</title>
     <link rel="stylesheet" type="text/css" href="Style.css">
 </head>
 <body>
@@ -10,7 +10,8 @@
     <ul>
         {{#ingredients}}
             <h3>{{name}}</h3>
-            <p>Precio: {{price}}€</p>
+            <p>Precio: {{category}}€</p>
+            <a href="allergens.mustache">Ver lista de alérgenos</a>
         {{/ingredients}}
     </ul>
 </div>
