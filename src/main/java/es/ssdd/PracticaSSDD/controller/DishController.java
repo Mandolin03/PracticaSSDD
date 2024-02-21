@@ -20,15 +20,27 @@ public class DishController {
         return "dishes";
     }
 
-    @GetMapping("/add-dish")
-    public String showFormAddDishes() {
+    @GetMapping("add-dish")
+    public String showFormAddDishes(Model model) {
+        model.addAttribute("dish", new Dish());
         return "add-dish";
     }
 
-    @PostMapping("/add-dish")
+    @PostMapping("add-dish")
     public String processFormAddDishes(Dish dish, Model model) {
         String success = dishService.createDish(dish);
         model.addAttribute("success", success);
-        return "add-dish";
+        return "redirect:/index";
     }
+
+    /* Idea Fer para el postMapping del dish y que redirija a index*/
+   /* @PostMapping("/index/add-dish")
+    public String processFormAddDishes(Dish dish) {
+        long id = counter.incrementAndGet();
+        dish.setId(id);
+        dishes.put(id, dish);
+        String success = dishService.createDish(dish);
+        model.addAttribute("success", success);
+        return "redirect:/index";
+    } */
 }
