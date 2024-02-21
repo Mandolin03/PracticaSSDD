@@ -30,14 +30,15 @@ public class IngredientController {
     }
 
     @GetMapping("/add-ingredient")
-    public String showFormAddIngredient(){
-
+    public String showFormAddIngredient(Model model){
+        model.addAttribute("ingredient", new Ingredient());
         return "add-ingredient";
     }
 
     @PostMapping("/add-ingredient")
-    public String processFormAddIngredient(){
-
+    public String processFormAddIngredient(Ingredient ingredient, Model model){
+        String success = createIngredient(ingredient);
+        model.addAttribute("success", success);
         return "redirect:/ingredients";
     }
 }
