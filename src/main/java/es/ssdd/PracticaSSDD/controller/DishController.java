@@ -29,13 +29,13 @@ public class DishController {
         return "dishes";
     }
 
-    @GetMapping("add-dish")
+    @GetMapping("/add-dish")
     public String showFormAddDishes(Model model) {
         model.addAttribute("dish", new Dish());
         return "add-dish";
     }
 
-    @PostMapping("add-dish")
+    @PostMapping("/add-dish")
     public String processFormAddDishes(Dish dish, Model model) {
         String success = createDish(dish);
         model.addAttribute("success", success);
