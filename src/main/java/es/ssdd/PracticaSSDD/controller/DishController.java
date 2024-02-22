@@ -27,8 +27,6 @@ public class DishController {
         Long id = dish.getId();
         dishes.get(id).setName(dish.getName());
         dishes.get(id).setCategory(dish.getCategory());
-        dishes.get(id).setIngredients(dish.getIngredients());
-        dishes.get(id).setAllergens(dish.getAllergens());
         dishes.get(id).setPrice(dish.getPrice());
         return "Plato editado con éxito";
     }

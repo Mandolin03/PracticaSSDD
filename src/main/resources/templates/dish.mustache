@@ -10,15 +10,8 @@
 
     <h2>{{dish.name}}</h2>
     <p>Categoría: {{dish.category}}€</p>
-    <p>Ingredientes:</p>
-    {{#dish.ingredients}}
-         {{name}}
-    {{/dish.ingredients}}
     <p>Precio: {{dish.price}}€</p>
-    <p>Alérgenos:</p>
-    {{#dish.allergens}}
-        {{name}}
-    {{/dish.allergens}}
+
 
     <a href="/dish/edit/{{dish.id}}">Editar plato</a>
     <a href="/dish/delete/{{dish.id}}">Borrar plato</a>
