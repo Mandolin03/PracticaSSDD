@@ -4,6 +4,7 @@ public class Allergen {
     private Long id;
     private String name;
 
+
     public Allergen() {
     }
 
