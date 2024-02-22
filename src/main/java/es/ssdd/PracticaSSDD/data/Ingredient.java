@@ -8,17 +8,6 @@ public class Ingredient {
     private String name;
     private String category;
 
-    public ArrayList<Allergen> getAllergens() {
-        return allergens;
-    }
-
-    public void setAllergens(ArrayList<Allergen> allergens) {
-        this.allergens = allergens;
-    }
-
-    private ArrayList<Allergen> allergens;
-
-
 
     public Ingredient() {
     }
@@ -27,7 +16,6 @@ public class Ingredient {
         this.id = id;
         this.name = name;
         this.category = category;
-        this.allergens = new ArrayList<>(allergens);
     }
 
 

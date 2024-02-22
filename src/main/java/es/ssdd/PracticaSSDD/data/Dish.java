@@ -8,8 +8,8 @@ public class Dish {
     private String category;
     private ArrayList<Ingredient> ingredients;
     private Double price;
-    //TODO add image
 
+    private ArrayList<Allergen> allergens;
     public Dish() {
     }
 
@@ -60,5 +60,13 @@ public class Dish {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public ArrayList<Allergen> getAllergens() {
+        return allergens;
+    }
+
+    public void setAllergens(ArrayList<Allergen> allergens) {
+        this.allergens = allergens;
     }
 }
