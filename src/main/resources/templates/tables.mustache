@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang = "es">
+<html lang="es">
 <head>
-    <title>Home</title>
+    <title>Menú del Restaurante SSDD</title>
     <link rel="stylesheet" type="text/css" href="Style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -23,13 +23,19 @@
     </div>
 </nav>
 <body>
-    <h1>Añadir nuevo ingrediente</h1>
-    <form name="ingredientForm" action="/add-ingredient" method="post">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name"><br><br>
-        <label for="category">Categoría:</label>
-        <input type="text" id="category" name="category"><br><br>
-        <input type="submit" value="Agregar">
-    </form>
+<h1>Tablas</h1>
+{{success}}
+<div class="contenedor">
+    <ul>
+        {{#tables}}
+            <h3>{{calories}}</h3>
+            <p>Proteina: {{protein}}</p>
+            <p>Carbohidratos: {{carbohydrates}}</p>
+            <p>Grasas: {{fats}}</p>
+            <a href="/tables/edit/{{id}}">Editar tabla</a>
+            <a href="/tables/delete/{{id}}">Borrar tabla</a>
+        {{/tables}}
+    </ul>
+</div>
 </body>
 </html>

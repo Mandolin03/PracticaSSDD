@@ -12,7 +12,7 @@ public class Ingredient {
     public Ingredient() {
     }
 
-    public Ingredient(Long id, String name, String category, List<Allergen> allergens) {
+    public Ingredient(Long id, String name, String category) {
         this.id = id;
         this.name = name;
         this.category = category;
