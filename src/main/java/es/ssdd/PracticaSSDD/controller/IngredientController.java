@@ -52,7 +52,7 @@ public class IngredientController {
     public String processFormNewIngredient(Ingredient ingredient, Model model){
         String success = createIngredient(ingredient);
         model.addAttribute("success", success);
-        return "new-ingredient";
+        return "redirect:/ingredients";
     }
     @GetMapping("/ingredients/details/{id}")
     public String detailedIngredient(@PathVariable Long id, Model model){

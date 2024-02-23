@@ -46,14 +46,14 @@ public class DishController {
     @GetMapping("/new-dish")
     public String showFormNewDish(Model model) {
         model.addAttribute("success", "");
-        return "new-dish";
+        return "/new-dish";
     }
 
     @PostMapping("/new-dish")
     public String processFormNewDish(Dish dish, Model model) {
         String success = createDish(dish);
         model.addAttribute("success", success);
-        return "new-dish";
+        return "redirect:/dishes";
     }
 
 

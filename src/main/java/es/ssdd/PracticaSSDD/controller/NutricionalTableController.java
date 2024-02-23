@@ -54,7 +54,7 @@ public class NutricionalTableController {
     public String processFormNewTable(NutricionalTable table, Model model){
         String success = createTable(table);
         model.addAttribute("success", success);
-        return "new-table";
+        return "redirect:/tables";
     }
     @GetMapping("/tables/details/{id}")
     public String detailedIngredient(@PathVariable Long id, Model model){
