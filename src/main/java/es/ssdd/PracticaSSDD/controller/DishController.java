@@ -65,7 +65,7 @@ public class DishController {
 
     @GetMapping("/dishes/edit/{id}")
     public String editDishForm(@PathVariable Long id, Model model){
-        model.addAttribute("success", " ");
+        model.addAttribute("success", "");
         model.addAttribute("dish", dishes.get(id));
         return "dishes/edit-dish";
     }

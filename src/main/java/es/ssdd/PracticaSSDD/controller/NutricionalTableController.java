@@ -64,15 +64,15 @@ public class NutricionalTableController {
     @GetMapping("/tables/edit/{id}")
     public String editTableForm(@PathVariable Long id, Model model){
         model.addAttribute("success", " ");
-        model.addAttribute("ingredient", tables.get(id));
+        model.addAttribute("table", tables.get(id));
         return "tables/edit-table";
     }
     @PostMapping("/tables/edit/{id}")
     public String editTable(NutricionalTable table, Model model){
         String e = editTable(table);
         model.addAttribute("success", e);
-        model.addAttribute("ingredient", tables.get(table.getId()));
-        return "tables/edit-table";
+        model.addAttribute("table", tables.get(table.getId()));
+        return "redirect:/tables";
     }
     @GetMapping("/tables/delete/{id}")
     public String deleteTable(@PathVariable Long id, Model model){

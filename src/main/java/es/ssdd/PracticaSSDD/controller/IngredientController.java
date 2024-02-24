@@ -71,13 +71,13 @@ public class IngredientController {
         String e = editIngredient(ingredient);
         model.addAttribute("success", e);
         model.addAttribute("ingredient", ingredients.get(ingredient.getId()));
-        return "ingredients/edit-ingredient";
+        return "redirect:/ingredients";
     }
     @GetMapping("/ingredients/delete/{id}")
     public String deleteIngredient(@PathVariable Long id, Model model){
         String e = deleteIngredient(ingredients.get(id));
         model.addAttribute("success", e);
         model.addAttribute("ingredients", this.ingredients.values());
-        return "ingredients/ingredients";
+        return "redirect:/ingredients";
     }
 }
