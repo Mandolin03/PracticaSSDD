@@ -22,7 +22,7 @@
     </div>
 </nav>
 <body>
-<p>{{success}}</p>
+<p class="success-message">{{success}}</p>
 <form name="editIngredientForm" action="/ingredients/edit/{{ingredient.id}}" method="post">
     <label for="name">Nombre:</label>
     <input type="text" id="name" name="name" value="{{ingredient.name}}"><br><br>

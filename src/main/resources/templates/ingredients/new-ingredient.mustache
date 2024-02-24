@@ -7,8 +7,7 @@
 
 </head>
 <body>
-{{success}}
-<div class="nuevo-plato">
+<p class="success-message">{{success}}</p>
     <h1>Añadir nuevo ingrediente</h1>
     <form name="ingredientForm" action="/new-ingredient" method="post">
         <label for="name">Nombre:</label>
@@ -17,7 +16,5 @@
         <input type="text" id="category" name="category"><br><br>
         <input type="submit" value="Agregar" href="/ingredients">
     </form>
-</div>
-
 </body>
 </html>
