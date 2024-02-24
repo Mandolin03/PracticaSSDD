@@ -39,13 +39,13 @@ public class IngredientController {
     public String getIngredients(Model model){
         model.addAttribute("ingredients", ingredients.values());
         model.addAttribute("success", " ");
-        return "ingredients";
+        return "ingredients/ingredients";
     }
 
     @GetMapping("/new-ingredient")
     public String showFormNewIngredient(Model model){
         model.addAttribute("success", "");
-        return "new-ingredient";
+        return "ingredients/new-ingredient";
     }
 
     @PostMapping("/new-ingredient")
@@ -57,27 +57,27 @@ public class IngredientController {
     @GetMapping("/ingredients/details/{id}")
     public String detailedIngredient(@PathVariable Long id, Model model){
         model.addAttribute("ingredient", ingredients.get(id));
-        return "ingredient";
+        return "ingredients/ingredient";
     }
 
     @GetMapping("/ingredients/edit/{id}")
     public String editDishForm(@PathVariable Long id, Model model){
         model.addAttribute("success", " ");
         model.addAttribute("ingredient", ingredients.get(id));
-        return "edit-ingredient";
+        return "ingredients/edit-ingredient";
     }
     @PostMapping("/ingredients/edit/{id}")
     public String editIngredient(Ingredient ingredient, Model model){
         String e = editIngredient(ingredient);
         model.addAttribute("success", e);
         model.addAttribute("ingredient", ingredients.get(ingredient.getId()));
-        return "edit-ingredient";
+        return "ingredients/edit-ingredient";
     }
     @GetMapping("/ingredients/delete/{id}")
     public String deleteIngredient(@PathVariable Long id, Model model){
         String e = deleteIngredient(ingredients.get(id));
         model.addAttribute("success", e);
         model.addAttribute("ingredients", this.ingredients.values());
-        return "ingredients";
+        return "ingredients/ingredients";
     }
 }

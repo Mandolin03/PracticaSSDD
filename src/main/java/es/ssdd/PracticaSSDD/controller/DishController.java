@@ -40,13 +40,13 @@ public class DishController {
     public String listDishes(Model model) {
         model.addAttribute("dishes", dishes.values());
         model.addAttribute("success", " ");
-        return "dishes";
+        return "dishes/dishes";
     }
 
     @GetMapping("/new-dish")
     public String showFormNewDish(Model model) {
         model.addAttribute("success", "");
-        return "/new-dish";
+        return "dishes/new-dish";
     }
 
     @PostMapping("/new-dish")
@@ -60,28 +60,28 @@ public class DishController {
     @GetMapping("/dishes/details/{id}")
     public String detailedDish(@PathVariable Long id, Model model){
         model.addAttribute("dish", dishes.get(id));
-        return "dish";
+        return "dishes/dish";
     }
 
     @GetMapping("/dishes/edit/{id}")
     public String editDishForm(@PathVariable Long id, Model model){
         model.addAttribute("success", " ");
         model.addAttribute("dish", dishes.get(id));
-        return "edit-dish";
+        return "dishes/edit-dish";
     }
     @PostMapping("/dishes/edit/{id}")
     public String editDish(Dish dish, Model model){
         String e = editDish(dish);
         model.addAttribute("success", e);
         model.addAttribute("dish", dishes.get(dish.getId()));
-        return "edit-dish";
+        return "dishes/edit-dish";
     }
     @GetMapping("/dishes/delete/{id}")
     public String deleteDish(@PathVariable Long id, Model model){
         String e = deleteDish(dishes.get(id));
         model.addAttribute("success", e);
         model.addAttribute("dish", this.dishes.values());
-        return "dishes";
+        return "dishes/dishes";
     }
 
 }

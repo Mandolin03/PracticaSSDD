@@ -1,6 +1,5 @@
 package es.ssdd.PracticaSSDD.controller;
 
-import es.ssdd.PracticaSSDD.data.Ingredient;
 import es.ssdd.PracticaSSDD.data.NutricionalTable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,20 +33,20 @@ public class NutricionalTableController {
     public String deleteTable(NutricionalTable table){
         Long id = table.getId();
         tables.remove(id);
-        return "Ingrediente borrado con éxito";
+        return "Tabla borrada con éxito";
     }
 
     @GetMapping("/tables")
     public String getTables(Model model){
         model.addAttribute("tables", tables.values());
         model.addAttribute("success", " ");
-        return "tables";
+        return "tables/tables";
     }
 
     @GetMapping("/new-table")
     public String showFormNewTable(Model model){
         model.addAttribute("success", "");
-        return "new-table";
+        return "tables/new-table";
     }
 
     @PostMapping("/new-table")
@@ -59,27 +58,27 @@ public class NutricionalTableController {
     @GetMapping("/tables/details/{id}")
     public String detailedIngredient(@PathVariable Long id, Model model){
         model.addAttribute("table", tables.get(id));
-        return "table";
+        return "tables/table";
     }
 
     @GetMapping("/tables/edit/{id}")
     public String editTableForm(@PathVariable Long id, Model model){
         model.addAttribute("success", " ");
         model.addAttribute("ingredient", tables.get(id));
-        return "edit-table";
+        return "tables/edit-table";
     }
     @PostMapping("/tables/edit/{id}")
     public String editTable(NutricionalTable table, Model model){
         String e = editTable(table);
         model.addAttribute("success", e);
         model.addAttribute("ingredient", tables.get(table.getId()));
-        return "edit-table";
+        return "tables/edit-table";
     }
     @GetMapping("/tables/delete/{id}")
     public String deleteTable(@PathVariable Long id, Model model){
         String e = deleteTable(tables.get(id));
         model.addAttribute("success", e);
         model.addAttribute("tables", this.tables.values());
-        return "tables";
+        return "tables/tables";
     }
 }
