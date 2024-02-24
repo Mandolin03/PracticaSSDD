@@ -79,6 +79,6 @@ public class NutricionalTableController {
         String e = deleteTable(tables.get(id));
         model.addAttribute("success", e);
         model.addAttribute("tables", this.tables.values());
-        return "tables/tables";
+        return "redirect:/tables";
     }
 }
