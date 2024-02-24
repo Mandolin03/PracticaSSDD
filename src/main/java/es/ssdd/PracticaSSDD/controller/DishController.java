@@ -74,14 +74,14 @@ public class DishController {
         String e = editDish(dish);
         model.addAttribute("success", e);
         model.addAttribute("dish", dishes.get(dish.getId()));
-        return "dishes/edit-dish";
+        return "redirect:/dishes";
     }
     @GetMapping("/dishes/delete/{id}")
     public String deleteDish(@PathVariable Long id, Model model){
         String e = deleteDish(dishes.get(id));
         model.addAttribute("success", e);
         model.addAttribute("dish", this.dishes.values());
-        return "dishes/dishes";
+        return "redirect:/dishes";
     }
 
 }
