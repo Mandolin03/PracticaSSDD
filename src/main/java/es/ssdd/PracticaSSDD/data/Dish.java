@@ -42,4 +42,8 @@ public class Dish {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    public String formattedPrice(){
+        return "%.2f".formatted(price);
+    }
 }
