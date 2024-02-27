@@ -8,7 +8,7 @@
 <body>
 <p class="success-message">{{success}}</p>
 <h1>Editar tabla</h1>
-<form name="editTableForm" action="/tables/edit/{{table.id}}" method="post">
+<form class="product-form" name="editTableForm" action="/tables/edit/{{table.id}}" method="post">
     <label for="calories">Calorias:</label>
     <input type="number" id="calories" name="calories" value="{{table.calories}}"><br><br>
     <label for="protein">Proteina:</label>
@@ -19,6 +19,5 @@
     <input type="number" id="fats" name="fats" value="{{table.fats}}"><br><br>
     <input type="submit" value="Editar">
 </form>
-
 </body>
 </html>
