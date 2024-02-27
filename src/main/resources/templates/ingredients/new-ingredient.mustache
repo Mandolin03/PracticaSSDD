@@ -10,12 +10,14 @@
 <p class="success-message">{{success}}</p>
     <h1>Añadir nuevo ingrediente</h1>
 <br>
-    <form name="ingredientForm" action="/new-ingredient" method="post">
+    <form class="product-form" name="ingredientForm" action="/new-ingredient" method="post">
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name"><br><br>
         <label for="category">Categoría:</label>
         <input type="text" id="category" name="category"><br><br>
         <input type="submit" value="Agregar" href="/ingredients">
     </form>
+<br>
+<a href="/ingredients" class="boton">Cancelar</a>
 </body>
 </html>

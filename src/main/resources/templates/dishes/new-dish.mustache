@@ -11,7 +11,7 @@
 <p class="success-message">{{success}}</p>
 <h1>Agrega un nuevo plato a la carta</h1>
     <br>
-<form name="dishForm" action="/new-dish" method="post" onsubmit="return checkForm()">
+<form class="product-form" name="dishForm" action="/new-dish" method="post" onsubmit="return checkForm()">
     <label for="name">Nombre:</label>
     <input type="text" id="name" name="name" ><br><br>
     <label for="category">Categoría:</label>
@@ -20,5 +20,7 @@
     <input id="price" name="price"><br><br>
     <input type="submit" value="Agregar" href="/dishes">
 </form>
+<br>
+<a href="/dishes" class="boton">Cancelar</a>
 </body>
 </html>

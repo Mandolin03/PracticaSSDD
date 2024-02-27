@@ -11,7 +11,7 @@
 <p class="success-message">{{success}}</p>
 <h1>Edita el plato</h1>
 <br>
-<form name="editDishForm" action="/dishes/edit/{{dish.id}}" method="post" onsubmit="return checkForm()">
+<form class="product-form" name="editDishForm" action="/dishes/edit/{{dish.id}}" method="post" onsubmit="return checkForm()">
     <label for="name">Nombre:</label>
     <input type="text" id="name" name="name" value="{{dish.name}}"><br><br>
     <label for="category">Categoría:</label>

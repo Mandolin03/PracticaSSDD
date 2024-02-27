@@ -33,13 +33,13 @@ a {
 }
 
 /* Forms */
-form {
+.product-form {
     max-width: 400px;
     margin: 0 auto;
 }
-input[type="text"],
-input[type="number"],
-textarea {
+.product-form input[type="text"],
+.product-form input[type="number"],
+.product-form textarea {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
@@ -47,7 +47,7 @@ textarea {
     border-radius: 4px;
     box-sizing: border-box;
 }
-input[type="submit"] {
+.product-form input[type="submit"] {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -56,13 +56,16 @@ input[type="submit"] {
     border-radius: 4px;
     cursor: pointer;
 }
-input[type="submit"]:hover {
+.product-form input[type="submit"]:hover {
     background-color: #45a049;
 }
-label {
+.product-form .button-container {
+    text-align: center;
+}
+.product-form label {
     font-weight: bold;
 }
-.success-message {
+.product-form .success-message {
     color: green;
 }
 
