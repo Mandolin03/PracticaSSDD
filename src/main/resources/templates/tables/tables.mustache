@@ -4,17 +4,24 @@
     <title>Menú del Restaurante SSDD</title>
    <link rel="stylesheet" type="text/css" href="/Style.css">
 </head>
-<nav>
-    <div class="navbar">
-        <a href="/">Inicio</a>
-        <a href="/dishes">Platos</a>
-        <a href="/ingredients">Ingredientes</a>
-        <a href="/tables">Tablas nutricionales</a>
-    </div>
-</nav>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-links">
+                <a href="/">Inicio</a>
+                <a href="/dishes">Platos</a>
+                <a href="/ingredients">Ingredientes</a>
+                <a href="/tables">Tablas nutricionales</a>
+            </div>
+        </div>
+    </nav>
+</header>
 <body>
-<h1>Tablas nutricionales</h1>
+<br>
+<h1 class="title">Tablas nutricionales</h1>
+<center>
 <a href="/new-table" class="boton">Agregar tabla nutricional</a>
+</center>
 <p class="success-message">{{success}}</p>
 {{#tables}}
 <div class="List-elem">
@@ -34,10 +41,10 @@
         {{/tables}}
 
 
-</body>
 <footer>
-    <div class="footer">
-        <p>Derechos de autor 2024 SSDD</p>
+    <div class="container">
+        <p>&copy; 2024 Restaurante SSDD. Todos los derechos reservados.</p>
     </div>
 </footer>
+</body>
 </html>

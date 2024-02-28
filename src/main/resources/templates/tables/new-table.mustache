@@ -8,20 +8,25 @@
 
 <body>
 <p class="success-message">{{success}}</p>
-<h1>Añadir nueva tabla</h1>
+<h1 class="title">Añade una nueva tabla</h1>
 <br>
 <form class="product-form" name="tableForm" action="/new-table" method="post" onsubmit="return checkTableForm()">
-    <label for="calories">Calorias:</label>
+    <label for="calories">Calorías:</label>
     <input type="number" id="calories" name="calories"><br><br>
-    <label for="protein">Proteina:</label>
+    <label for="protein">Proteínas:</label>
     <input type="number" id="protein" name="protein"><br><br>
     <label for="carbohydrates">Carbohidratos:</label>
     <input type="number" id="carbohydrates" name="carbohydrates"><br><br>
     <label for="fats">Grasas:</label>
     <input type="number" id="fats" name="fats"><br><br>
+    <center>
     <input type="submit" value="Agregar">
+    <a href="/tables" type="submit">Cancelar</a>
+    </center>
 </form>
 <br>
-<a href="/tables" class="boton">Cancelar</a>
+
+
 </body>
+
 </html>

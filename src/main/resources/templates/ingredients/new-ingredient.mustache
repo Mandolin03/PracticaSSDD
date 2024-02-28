@@ -8,16 +8,19 @@
 </head>
 <body>
 <p class="success-message">{{success}}</p>
-    <h1>Añadir nuevo ingrediente</h1>
+    <h1 class="title">Añade un nuevo ingrediente</h1>
 <br>
     <form class="product-form" name="ingredientForm" action="/new-ingredient" method="post" onsubmit="return checkIngredientForm()">
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name"><br><br>
         <label for="category">Categoría:</label>
         <input type="text" id="category" name="category"><br><br>
+        <center>
         <input type="submit" value="Agregar">
+        <a href="/ingredients" type="submit">Cancelar</a>
+        </center>
     </form>
 <br>
-<a href="/ingredients" class="boton">Cancelar</a>
+
 </body>
 </html>

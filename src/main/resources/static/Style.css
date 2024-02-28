@@ -56,22 +56,35 @@ main {
     text-align: center;
 }
 
+.title{
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #6488AF;
+    text-align: center;
+}
+
 .hero {
-    background-image: url('https://via.placeholder.com/1500x500');
+   /* background-image: url('https://via.placeholder.com/1500x500'); */
     background-size: cover;
     background-position: center;
-    color: #fff;
+    /*color: #fff;*/
     padding: 100px 0;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .hero h1 {
     font-size: 3em;
     margin-bottom: 20px;
+    color: #6488AF;
 }
 
 .hero p {
     font-size: 1.2em;
     margin-bottom: 20px;
+    color: #666;
 }
 
 .button {
@@ -113,6 +126,9 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer p {
@@ -131,6 +147,7 @@ footer {
 
 .product-form input[type="text"],
 .product-form input[type="email"],
+.product-form input[type="number"],
 .product-form textarea {
     width: calc(100% - 20px);
     padding: 10px;
@@ -140,7 +157,8 @@ footer {
     box-sizing: border-box;
 }
 
-.product-form input[type="submit"] {
+.product-form input[type="submit"],
+.product-form a[type="submit"]{
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -149,9 +167,11 @@ footer {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: none;
 }
 
-.product-form input[type="submit"]:hover {
+.product-form input[type="submit"]:hover,
+.product-form a[type="submit"]:hover{
     background-color: #45a049;
 }
 

@@ -7,9 +7,10 @@
     <link rel="stylesheet" type="text/css" href="/Style.css">
     <script src="/script.js"></script>
 </head>
+
 <body>
 <p class="success-message">{{success}}</p>
-<h1>Agrega un nuevo plato a la carta</h1>
+<h1 class="title">Agrega un nuevo plato a la carta</h1>
     <br>
 <form class="product-form" name="dishForm" action="/new-dish" method="post" onsubmit="return checkDishForm()">
     <label for="name">Nombre:</label>
@@ -17,10 +18,13 @@
     <label for="category">Categoría:</label>
     <input type="text" id="category" name="category"><br><br>
     <label for="price">Precio:</label>
-    <input id="price" name="price"><br><br>
+    <input type="number" id="price" name="price"><br><br>
+    <center>
     <input type="submit" value="Agregar">
+    <a href="/dishes" type="submit">Cancelar</a>
+    </center>
 </form>
 <br>
-<a href="/dishes" class="boton">Cancelar</a>
+
 </body>
 </html>
