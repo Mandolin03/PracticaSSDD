@@ -4,44 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurante SSDD</title>
-    <link rel="stylesheet" type="text/css" href="Style.css">
+    <link rel="stylesheet" type="text/css" href="/Style.css">
 </head>
 <body>
 <header>
     <nav class="navbar">
-        <a href="/">Inicio</a>
-        <a href="/dishes">Platos</a>
-        <a href="/ingredients">Ingredientes</a>
-        <a href="/tables">Tablas nutricionales</a>
+        <div class="container">
+            <h1 class="logo">Restaurante SSDD</h1>
+            <div class="nav-links">
+                <a href="/">Inicio</a>
+                <a href="/dishes">Platos</a>
+                <a href="/ingredients">Ingredientes</a>
+                <a href="/tables">Tablas nutricionales</a>
+            </div>
+        </div>
     </nav>
 </header>
 <main>
-    <h1>Bienvenido al restaurante SSDD</h1>
-    <div class="container">
-        <section>
+    <section class="hero">
+        <div class="container">
+            <h1>Bienvenido al restaurante SSDD</h1>
+            <p>Descubre nuestra exquisita selección de platos y sabores únicos.</p>
+            <a href="#menu" class="button">Ver Menú</a>
+        </div>
+    </section>
+    <section class="menu" id="menu">
+        <div class="container">
             <h2>Nuestros platos</h2>
-            <p>Descubre nuestra deliciosa selección de platos.</p>
+            <p>Explora nuestra deliciosa variedad de platos elaborados con los mejores ingredientes.</p>
             <a href="/dishes" class="button">Ver Platos</a>
-        </section>
-        <section>
-            <h2>Menú del día</h2>
-            <p>¡No te pierdas nuestras ofertas diarias!</p>
-            <a href="#" class="button disabled">Próximamente</a>
-        </section>
-        <section>
-            <h2>Valoraciones</h2>
-            <p>Lee lo que dicen nuestros clientes.</p>
-            <a href="#" class="button disabled">Próximamente</a>
-        </section>
-        <section>
-            <h2>Dónde encontrarnos</h2>
+        </div>
+    </section>
+    <section class="location">
+        <div class="container">
+            <h2>Encuéntranos</h2>
             <p>Dirección: Calle Tulipán, Móstoles, Madrid, 28933</p>
             <a href="#" class="button">Ver en el Mapa</a>
-        </section>
-    </div>
+        </div>
+    </section>
 </main>
 <footer>
-    <div class="footer">
+    <div class="container">
         <p>&copy; 2024 Restaurante SSDD. Todos los derechos reservados.</p>
     </div>
 </footer>
