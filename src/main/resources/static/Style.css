@@ -1,7 +1,7 @@
 /* General page */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #F8F4E3;
+    background-color: #6488AF;
     color: black;
 }
 
@@ -12,8 +12,19 @@ body {
 }
 
 header {
-    background-color: #A2A392;
+    background-color: cadetblue;
     color: black;
+}
+
+footer {
+    background-color: cadetblue;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer p {
+    margin: 0;
 }
 
 .navbar {
@@ -79,17 +90,6 @@ p {
 
 .button:hover {
     background-color: #D4CDC3;
-}
-
-footer {
-    background-color: #A2A392;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-.footer p {
-    margin: 0;
 }
 
 /* Forms */
