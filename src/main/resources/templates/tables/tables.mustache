@@ -19,9 +19,6 @@
 <body>
 <br>
 <h1 class="title">Tablas nutricionales</h1>
-<center>
-<a href="/new-table" class="boton">Agregar tabla nutricional</a>
-</center>
 <p class="success-message">{{success}}</p>
 {{#tables}}
 <div class="List-elem">
@@ -32,15 +29,16 @@
             <p>Grasas: {{fats}}</p>
         </div>
         <div class="content-right">
-            <a href="/tables/edit/{{id}}" class="boton">Editar tabla</a>
+            <a href="/tables/edit/{{id}}" class="button">Editar tabla</a>
             <br>
-            <a href="/tables/delete/{{id}}" class="boton"
+            <a href="/tables/delete/{{id}}" class="button"
                onclick="return confirm('¿Estás seguro de querer eliminar esta tabla?')">Borrar tabla</a>
         </div>
             </div>
         {{/tables}}
-
-
+<div class="button-container">
+<a href="/new-table" class="button">Agregar tabla nutricional</a>
+</div>
 <footer>
     <div class="container">
         <p>&copy; 2024 Restaurante SSDD. Todos los derechos reservados.</p>

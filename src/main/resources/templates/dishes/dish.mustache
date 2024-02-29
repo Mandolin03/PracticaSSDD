@@ -5,18 +5,20 @@
     <link rel="stylesheet" type="text/css" href="/Style.css">
 </head>
 <body>
-<h1>Detalles del plato</h1>
-<div class="contenedor-plato">
+<h1 class="title">Detalles del plato</h1>
+<div class="product-container">
 
-    <h2>{{dish.name}}</h2>
+    <h3>{{dish.name}}</h3>
     <p>Categoría: {{dish.category}}€</p>
     <p>Precio: {{dish.price}}€</p>
 
 
-    <a href="/dish/edit/{{dish.id}}">Editar plato</a>
-    <a href="/dish/delete/{{dish.id}}">Borrar plato</a>
+    <div class="button-container">
+        <a href="/dish/edit/{{dish.id}}" class="button">Editar</a><br>
+        <a href="/dish/delete/{{dish.id}}" class="button">Borrar</a><br>
+        <a href="/dishes" class="button">Volver</a><br>
+    </div>
 
-    <a href="/dishes">Volver a la lista de platos</a>
 
 </div>
 </body>
