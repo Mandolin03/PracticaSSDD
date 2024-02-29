@@ -24,9 +24,11 @@
 {{#dishes}}
     <div class="List-elem">
         <div class="content-left">
-           <a href="/dishes/details/{{id}}"> <h3>{{name}}</h3></a>
+           <a href="/dishes/details/{{id}}" style="text-decoration: none"> <h3>{{name}}</h3></a>
+            <br>
             <p>Precio: {{formattedPrice}}&euro;</p>
             <p>Categoría: {{category}}</p>
+            <br>
         </div>
         <div class="content-right">
             <a href="/dishes/edit/{{id}}" class="button">Editar plato</a>
