@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Elemento no encontrado</title>
+    <title>Error {{status}}</title>
     <link rel="stylesheet" type="text/css" href="/Style.css">
 </head>
 <header>
     <nav class="navbar">
         <div class="container">
             <div class="nav-links">
-                <a href="/">Inicio</a>
+                <a href="/static">Inicio</a>
                 <a href="/dishes">Platos</a>
                 <a href="/ingredients">Ingredientes</a>
                 <a href="/tables">Tablas nutricionales</a>
@@ -21,8 +21,7 @@
 <main>
     <section class="hero">
         <div class="container">
-            <h1>Error 404</h1>
-            <p>La página que buscabas no existe, comprueba que has escrito bien la ruta</p>
+            <h1>Error {{status}} - {{error}}</h1>
             <a href="/" class="button">Volver al menú</a>
         </div>
     </section>

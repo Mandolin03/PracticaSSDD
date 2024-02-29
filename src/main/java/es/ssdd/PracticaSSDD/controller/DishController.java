@@ -55,24 +55,26 @@ public class DishController {
 
 
     @GetMapping("/dishes/details/{id}")
-    public String detailedDish(@PathVariable Long id, Model model){
+    public String detailedDish(@PathVariable Long id, Model model) {
         model.addAttribute("dish", dishService.obtainDish(id));
         return "dishes/dish";
     }
 
     @GetMapping("/dishes/edit/{id}")
-    public String editDishForm(@PathVariable Long id, Model model){
+    public String editDishForm(@PathVariable Long id, Model model) {
         model.addAttribute("success", "");
         model.addAttribute("dish", dishService.obtainDish(id));
         return "dishes/edit-dish";
     }
+
     @PostMapping("/dishes/edit/{id}")
-    public String editDish(Dish dish){
+    public String editDish(Dish dish) {
         dishService.editDish(dish.getId(), dish);
         return "redirect:/dishes";
     }
+
     @GetMapping("/dishes/delete/{id}")
-    public String deleteDish(@PathVariable Long id){
+    public String deleteDish(@PathVariable Long id) {
         dishService.removeDish(id);
         return "redirect:/dishes";
     }
