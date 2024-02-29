@@ -126,7 +126,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
@@ -145,9 +145,8 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.product-form input[type="text"],
-.product-form input[type="email"],
-.product-form input[type="number"],
+.product-form input,
+.product-form a,
 .product-form textarea {
     width: calc(100% - 20px);
     padding: 10px;
@@ -157,8 +156,7 @@ footer {
     box-sizing: border-box;
 }
 
-.product-form input[type="submit"],
-.product-form a[type="submit"]{
+.product-form input[type="submit"]{
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -170,13 +168,24 @@ footer {
     text-decoration: none;
 }
 
-.product-form input[type="submit"]:hover,
-.product-form a[type="submit"]:hover{
+.product-form .cancel{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-form input[type="submit"]:hover{
     background-color: #45a049;
 }
 
-.product-form .button-container {
-    text-align: center;
+.product-form .cancel:hover{
+    background-color: darkred;
 }
 
 .product-form label {
@@ -185,6 +194,10 @@ footer {
 
 .product-form .success-message {
     color: #4CAF50;
+}
+
+.button-container {
+    text-align: center;
 }
 
 /* JavaScript */
@@ -213,19 +226,35 @@ input::placeholder {
     margin-left: 20px;
 }
 
-/* Buttons */
-.boton {
+/* Products */
+.product-container{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+.product-container .button {
     display: inline-block;
-    padding: 10px 20px;
     background-color: #4CAF50;
-    color: white;
+    color: #fff;
     text-decoration: none;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
     transition: background-color 0.3s;
 }
 
-.boton:hover {
+.product-container .button:hover {
     background-color: #45a049;
+}
+.product-container h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-container p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
 }

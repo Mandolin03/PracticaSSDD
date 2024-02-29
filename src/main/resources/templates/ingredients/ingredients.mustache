@@ -20,9 +20,6 @@
 <body>
 <br>
 <h1 class="title">Ingredientes</h1>
-<center>
-<a href="/new-ingredient" class="boton">Agregar ingredientes</a>
-</center>
 <p class="success-message">{{success}}</p>
         {{#ingredients}}
         <div class="List-elem">
@@ -31,18 +28,21 @@
             <p>Categoría: {{category}}</p>
         </div>
         <div class="content-right">
-            <a href="/ingredients/edit/{{id}}" class="boton">Editar ingrediente</a>
+            <a href="/ingredients/edit/{{id}}" class="button">Editar ingrediente</a>
             <br>
-            <a href="/ingredients/delete/{{id}}" class="boton"
+            <a href="/ingredients/delete/{{id}}" class="button"
                 onclick="return confirm('¿Estás seguro de querer eliminar este ingrediente?')">Borrar ingrediente</a>
         </div>
         </div>
         {{/ingredients}}
+        <div class="button-container">
+            <a href="/new-ingredient" class="button">Agregar ingredientes</a>
+        </div>
 
-</body>
 <footer>
     <div class="container">
         <p>&copy; 2024 Restaurante SSDD. Todos los derechos reservados.</p>
     </div>
 </footer>
+</body>
 </html>
