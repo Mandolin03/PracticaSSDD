@@ -126,13 +126,18 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    position: relative;
+    position: absolute;
     bottom: 0;
     width: 100%;
 }
 
 .footer p {
     margin: 0;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
 }
 
 /* Forms */
