@@ -1,7 +1,10 @@
 package es.ssdd.PracticaSSDD.controller;
 
 
-import es.ssdd.PracticaSSDD.data.Ingredient;
+import es.ssdd.PracticaSSDD.entities.Ingredient;
+import es.ssdd.PracticaSSDD.service.DishService;
+import es.ssdd.PracticaSSDD.service.IngredientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +17,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
 public class IngredientController {
-    private AtomicLong counter = new AtomicLong();
-    private ConcurrentMap<Long, Ingredient> ingredients = new ConcurrentHashMap<>();
 
-    public String createIngredient(Ingredient ingredient) {
+ /*   public String createIngredient(Ingredient ingredient) {
         Long id = counter.incrementAndGet();
         ingredient.setId(id);
         ingredients.put(id, ingredient);
@@ -34,10 +35,13 @@ public class IngredientController {
         ingredients.remove(id);
         return "Ingrediente borrado con éxito";
     }
+*/
+ @Autowired
+ private IngredientService ingredientService;
 
     @GetMapping("/ingredients")
     public String getIngredients(Model model){
-        model.addAttribute("ingredients", ingredients.values());
+        model.addAttribute("ingredients", ingredientService.obtainAllIngredients());
         model.addAttribute("success", " ");
         return "ingredients/ingredients";
     }
@@ -49,35 +53,30 @@ public class IngredientController {
     }
 
     @PostMapping("/new-ingredient")
-    public String processFormNewIngredient(Ingredient ingredient, Model model){
-        String success = createIngredient(ingredient);
-        model.addAttribute("success", success);
+    public String processFormNewIngredient(Ingredient ingredient){
+        ingredientService.createIngredient(ingredient);
         return "redirect:/ingredients";
     }
     @GetMapping("/ingredients/details/{id}")
     public String detailedIngredient(@PathVariable Long id, Model model){
-        model.addAttribute("ingredient", ingredients.get(id));
+        model.addAttribute("ingredient", ingredientService.obtainIngredient(id));
         return "ingredients/ingredient";
     }
 
     @GetMapping("/ingredients/edit/{id}")
     public String editDishForm(@PathVariable Long id, Model model){
         model.addAttribute("success", " ");
-        model.addAttribute("ingredient", ingredients.get(id));
+        model.addAttribute("ingredient", ingredientService.obtainIngredient(id));
         return "ingredients/edit-ingredient";
     }
     @PostMapping("/ingredients/edit/{id}")
-    public String editIngredient(Ingredient ingredient, Model model){
-        String e = editIngredient(ingredient);
-        model.addAttribute("success", e);
-        model.addAttribute("ingredient", ingredients.get(ingredient.getId()));
+    public String editIngredient(Ingredient ingredient){
+        ingredientService.editIngredient(ingredient.getId(), ingredient);
         return "redirect:/ingredients";
     }
     @GetMapping("/ingredients/delete/{id}")
     public String deleteIngredient(@PathVariable Long id, Model model){
-        String e = deleteIngredient(ingredients.get(id));
-        model.addAttribute("success", e);
-        model.addAttribute("ingredients", this.ingredients.values());
+        ingredientService.removeIngredient(id);
         return "redirect:/ingredients";
     }
 }

@@ -1,6 +1,4 @@
-package es.ssdd.PracticaSSDD.data;
-
-import java.util.ArrayList;
+package es.ssdd.PracticaSSDD.entities;
 
 public class Dish {
     private Long id;

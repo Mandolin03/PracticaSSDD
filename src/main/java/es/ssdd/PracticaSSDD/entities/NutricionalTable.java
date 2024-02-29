@@ -1,4 +1,4 @@
-package es.ssdd.PracticaSSDD.data;
+package es.ssdd.PracticaSSDD.entities;
 
 public class NutricionalTable {
     private Long id;

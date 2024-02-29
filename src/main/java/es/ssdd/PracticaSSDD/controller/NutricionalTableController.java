@@ -1,6 +1,6 @@
 package es.ssdd.PracticaSSDD.controller;
 
-import es.ssdd.PracticaSSDD.data.NutricionalTable;
+import es.ssdd.PracticaSSDD.entities.NutricionalTable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

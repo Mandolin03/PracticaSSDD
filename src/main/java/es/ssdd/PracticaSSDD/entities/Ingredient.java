@@ -1,7 +1,4 @@
-package es.ssdd.PracticaSSDD.data;
-
-import java.util.ArrayList;
-import java.util.List;
+package es.ssdd.PracticaSSDD.entities;
 
 public class Ingredient {
     private Long id;
