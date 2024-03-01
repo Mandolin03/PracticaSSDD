@@ -1,4 +1,4 @@
-package es.ssdd.PracticaSSDD.controller;
+package es.ssdd.PracticaSSDD.webController;
 
 import es.ssdd.PracticaSSDD.entities.NutricionalTable;
 import org.springframework.stereotype.Controller;

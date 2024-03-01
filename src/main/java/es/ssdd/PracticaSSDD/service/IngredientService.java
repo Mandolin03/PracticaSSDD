@@ -1,6 +1,5 @@
 package es.ssdd.PracticaSSDD.service;
 
-import es.ssdd.PracticaSSDD.entities.Dish;
 import es.ssdd.PracticaSSDD.entities.Ingredient;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +20,11 @@ public class IngredientService {
         return ingredient;
     }
 
-    public Ingredient obtainIngredient(Long id) {
+    public Ingredient getIngredient(Long id) {
         return ingredients.get(id);
     }
 
-    public Collection<Ingredient> obtainAllIngredients() {
-
+    public Collection<Ingredient> getIngredients() {
         return ingredients.values();
     }
 
@@ -34,12 +32,14 @@ public class IngredientService {
         if (!ingredients.containsKey(id)) {
             return null;
         }
-        ingredient.setId(id);
-        ingredients.put(id, ingredient);
-        return ingredient;
+        Ingredient original = ingredients.get(id);
+        if(ingredient.getCategory() != null)original.setCategory(ingredient.getCategory());
+        if(ingredient.getName() != null)original.setName((ingredient.getName()));
+        ingredients.put(id, original);
+        return original;
     }
 
-    public void removeIngredient(Long id) {
-        ingredients.remove(id);
+    public boolean removeIngredient(Long id) {
+        return ingredients.remove(id) != null;
     }
 }

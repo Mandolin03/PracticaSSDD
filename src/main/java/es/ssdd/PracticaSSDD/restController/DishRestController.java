@@ -1,4 +1,4 @@
-package es.ssdd.PracticaSSDD.controller;
+package es.ssdd.PracticaSSDD.restController;
 
 import es.ssdd.PracticaSSDD.entities.Dish;
 import org.springframework.beans.factory.annotation.Autowired;

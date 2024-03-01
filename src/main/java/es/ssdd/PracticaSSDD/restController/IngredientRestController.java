@@ -1,8 +1,6 @@
-package es.ssdd.PracticaSSDD.controller;
+package es.ssdd.PracticaSSDD.restController;
 
-import es.ssdd.PracticaSSDD.entities.Dish;
 import es.ssdd.PracticaSSDD.entities.Ingredient;
-import es.ssdd.PracticaSSDD.service.DishService;
 import es.ssdd.PracticaSSDD.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,19 +11,17 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/api")
 public class IngredientRestController {
-
-
         @Autowired
         private IngredientService ingredientService;
 
         @GetMapping("/ingredients")
-        public ResponseEntity<Collection<Ingredient>> obtainAllIngredients() {
-            return ResponseEntity.ok(ingredientService.obtainAllIngredients());
+        public ResponseEntity<Collection<Ingredient>> getIngredients() {
+            return ResponseEntity.ok(ingredientService.getIngredients());
         }
 
         @GetMapping("/ingredients/{id}")
-        public ResponseEntity<Ingredient> obtainIngredient(@PathVariable Long id) {
-            Ingredient ingredient = ingredientService.obtainIngredient(id);
+        public ResponseEntity<Ingredient> getIngredient(@PathVariable Long id) {
+            Ingredient ingredient = ingredientService.getIngredient(id);
             if (ingredient == null) {
                 return ResponseEntity.notFound().build();
             }
@@ -48,7 +44,9 @@ public class IngredientRestController {
 
         @DeleteMapping("/delete-ingredient/{id}")
         public ResponseEntity<Void> removeIngredient(@PathVariable Long id) {
-            ingredientService.removeIngredient(id);
-            return ResponseEntity.ok().build();
+            if (ingredientService.removeIngredient(id)) {
+                return ResponseEntity.ok().build();
+            }
+            return ResponseEntity.notFound().build();
         }
     }
