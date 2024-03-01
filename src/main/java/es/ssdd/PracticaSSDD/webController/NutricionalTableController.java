@@ -1,44 +1,23 @@
 package es.ssdd.PracticaSSDD.webController;
 
 import es.ssdd.PracticaSSDD.entities.NutricionalTable;
+import es.ssdd.PracticaSSDD.service.NutricionalTableService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
 public class NutricionalTableController {
-    private AtomicLong counter = new AtomicLong();
-    private ConcurrentMap<Long, NutricionalTable> tables = new ConcurrentHashMap<>();
-
-    public String createTable(NutricionalTable table) {
-        Long id = counter.incrementAndGet();
-        table.setId(id);
-        tables.put(id, table);
-        return "Tabla creada con éxito";
-    }
-    public String editTable(NutricionalTable table){
-        Long id = table.getId();
-        tables.get(id).setCalories(table.getCalories());
-        tables.get(id).setProtein(table.getProtein());
-        tables.get(id).setCarbohydrates(table.getCarbohydrates());
-        tables.get(id).setFats(table.getFats());
-        return "Tabla editada con éxito";
-    }
-    public String deleteTable(NutricionalTable table){
-        Long id = table.getId();
-        tables.remove(id);
-        return "Tabla borrada con éxito";
-    }
+    @Autowired
+    private NutricionalTableService tableService;
 
     @GetMapping("/tables")
     public String getTables(Model model){
-        model.addAttribute("tables", tables.values());
+        model.addAttribute("tables", tableService.getTables());
         model.addAttribute("success", " ");
         return "tables/tables";
     }
@@ -50,35 +29,40 @@ public class NutricionalTableController {
     }
 
     @PostMapping("/new-table")
-    public String processFormNewTable(NutricionalTable table, Model model){
-        String success = createTable(table);
-        model.addAttribute("success", success);
+    public String processFormNewTable(NutricionalTable table){
+        tableService.createTable(table);
         return "redirect:/tables";
     }
     @GetMapping("/tables/details/{id}")
     public String detailedIngredient(@PathVariable Long id, Model model){
-        model.addAttribute("table", tables.get(id));
-        return "tables/table";
+        if (tableService.getTable(id) != null){
+            model.addAttribute("table", tableService.getTable(id));
+            return "tables/table";
+        } else {
+            return "redirect:/tables";
+        }
+
     }
 
     @GetMapping("/tables/edit/{id}")
     public String editTableForm(@PathVariable Long id, Model model){
-        model.addAttribute("success", " ");
-        model.addAttribute("table", tables.get(id));
-        return "tables/edit-table";
+        if (tableService.getTable(id) != null){
+            model.addAttribute("success", "");
+            model.addAttribute("table", tableService.getTable(id));
+            return "tables/edit-table";
+        } else {
+            return "redirect:/tables";
+        }
+
     }
     @PostMapping("/tables/edit/{id}")
-    public String editTable(NutricionalTable table, Model model){
-        String e = editTable(table);
-        model.addAttribute("success", e);
-        model.addAttribute("table", tables.get(table.getId()));
+    public String editTable(NutricionalTable table){
+        tableService.editTable(table.getId(), table);
         return "redirect:/tables";
     }
     @GetMapping("/tables/delete/{id}")
-    public String deleteTable(@PathVariable Long id, Model model){
-        String e = deleteTable(tables.get(id));
-        model.addAttribute("success", e);
-        model.addAttribute("tables", this.tables.values());
+    public String deleteTable(@PathVariable Long id){
+        tableService.removeTable(id);
         return "redirect:/tables";
     }
 }

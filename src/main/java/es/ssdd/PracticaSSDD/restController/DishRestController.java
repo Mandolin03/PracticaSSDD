@@ -16,12 +16,12 @@ public class DishRestController {
 
     @GetMapping("/dishes")
     public ResponseEntity<Collection<Dish>> obtainAllDishes() {
-        return ResponseEntity.ok(dishService.obtainAllDishes());
+        return ResponseEntity.ok(dishService.getDishes());
     }
 
     @GetMapping("/dishes/{id}")
     public ResponseEntity<Dish> obtainDish(@PathVariable Long id) {
-        Dish dish = dishService.obtainDish(id);
+        Dish dish = dishService.getDish(id);
         if (dish == null) {
             return ResponseEntity.notFound().build();
         }
@@ -44,7 +44,9 @@ public class DishRestController {
 
     @DeleteMapping("/delete-dish/{id}")
     public ResponseEntity<Void> removeDish(@PathVariable Long id) {
-        dishService.removeDish(id);
-        return ResponseEntity.ok().build();
+        if (dishService.removeDish(id)) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

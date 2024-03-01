@@ -20,24 +20,27 @@ public class DishService {
         return dish;
     }
 
-    public Dish obtainDish(Long id) {
+    public Dish getDish(Long id) {
         return dishes.get(id);
     }
 
-    public Collection<Dish> obtainAllDishes() {
+    public Collection<Dish> getDishes() {
         return dishes.values();
     }
 
     public Dish editDish(Long id, Dish dish) {
+
         if (!dishes.containsKey(id)) {
             return null;
         }
-        dish.setId(id);
-        dishes.put(id, dish);
-        return dish;
+        Dish original = dishes.get(id);
+        if(dish.getCategory() != null)original.setCategory(dish.getCategory());
+        if(dish.getName() != null)original.setName((dish.getName()));
+        dishes.put(id, original);
+        return original;
     }
 
-    public void removeDish(Long id) {
-        dishes.remove(id);
+    public boolean removeDish(Long id) {
+        return dishes.remove(id) != null;
     }
 }
