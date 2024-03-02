@@ -4,26 +4,25 @@
     <title>Menú del Restaurante SSDD</title>
    <link rel="stylesheet" type="text/css" href="/Style.css">
 </head>
-<header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-links">
-                <a href="/">Inicio</a>
-                <a href="/dishes">Platos</a>
-                <a href="/ingredients">Ingredientes</a>
-                <a href="/tables">Tablas nutricionales</a>
-            </div>
-        </div>
-    </nav>
-</header>
 <body>
-<br>
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-links">
+            <a href="/">Inicio</a>
+            <a href="/dishes">Platos</a>
+            <a href="/ingredients">Ingredientes</a>
+            <a href="/tables">Tablas nutricionales</a>
+        </div>
+    </div>
+</nav>
 <h1 class="title">Tablas nutricionales</h1>
-<p class="success-message">{{success}}</p>
+<div class="button-container">
+    <a href="/new-table" class="button">Agregar tabla nutricional</a>
+</div>
 {{#tables}}
 <div class="List-elem">
     <div class="content-left">
-        <a href="/tables/details/{{id}}" style="text-decoration: none"> <h3>{{calories}}</h3></a>
+        <a href="/tables/details/{{id}}"> <h3>{{calories}}</h3></a>
         <br>
             <p>Proteina: {{protein}}</p>
             <p>Carbohidratos: {{carbohydrates}}</p>
@@ -31,17 +30,14 @@
         <br>
         </div>
         <div class="content-right">
-            <a href="/tables/edit/{{id}}" class="button">Editar tabla</a>
+            <a href="/tables/edit/{{id}}" class="edit">Editar tabla</a>
             <br>
             <br>
-            <a href="/tables/delete/{{id}}" class="button"
+            <a href="/tables/delete/{{id}}" class="delete"
                onclick="return confirm('¿Estás seguro de querer eliminar esta tabla?')">Borrar tabla</a>
         </div>
             </div>
         {{/tables}}
-<div class="button-container">
-<a href="/new-table" class="button">Agregar tabla nutricional</a>
-</div>
 <footer>
     <div class="container">
         <p>&copy; 2024 Restaurante SSDD. Todos los derechos reservados.</p>

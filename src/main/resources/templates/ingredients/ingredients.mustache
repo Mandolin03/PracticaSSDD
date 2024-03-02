@@ -5,22 +5,21 @@
     <link rel="stylesheet" type="text/css" href="/Style.css">
 
 </head>
-<header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-links">
-                <a href="/">Inicio</a>
-                <a href="/dishes">Platos</a>
-                <a href="/ingredients">Ingredientes</a>
-                <a href="/tables">Tablas nutricionales</a>
-            </div>
-        </div>
-    </nav>
-</header>
 <body>
-<br>
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-links">
+            <a href="/">Inicio</a>
+            <a href="/dishes">Platos</a>
+            <a href="/ingredients">Ingredientes</a>
+            <a href="/tables">Tablas nutricionales</a>
+        </div>
+    </div>
+</nav>
 <h1 class="title">Ingredientes</h1>
-<p class="success-message">{{success}}</p>
+<div class="button-container">
+    <a href="/new-ingredient" class="button">Agregar ingredientes</a>
+</div>
         {{#ingredients}}
         <div class="List-elem">
         <div class="content-left">
@@ -30,17 +29,15 @@
             <br>
         </div>
         <div class="content-right">
-            <a href="/ingredients/edit/{{id}}" class="button">Editar ingrediente</a>
+            <a href="/ingredients/edit/{{id}}" class="edit">Editar ingrediente</a>
             <br>
             <br>
-            <a href="/ingredients/delete/{{id}}" class="button"
+            <a href="/ingredients/delete/{{id}}" class="delete"
                 onclick="return confirm('¿Estás seguro de querer eliminar este ingrediente?')">Borrar ingrediente</a>
         </div>
         </div>
         {{/ingredients}}
-        <div class="button-container">
-            <a href="/new-ingredient" class="button">Agregar ingredientes</a>
-        </div>
+
 
 <footer>
     <div class="container">

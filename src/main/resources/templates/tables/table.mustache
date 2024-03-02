@@ -6,20 +6,25 @@
 </head>
 <body>
 <h1 class="title">Detalles de la tabla</h1>
-<div class="product-container">
+<div class="table-container">
 
-    <h3>{{table.calories}}</h3><br><br>
-    <h4>Proteina: </h4><br>
+    <h3>{{table.calories}}</h3><br>
+    <div class="table-atr">
+    <h4>Proteina: </h4>
     <p>{{table.protein}}</p>
-    <h4>Carbohidratos: </h4><br>
+    </div>
+    <div class="table-atr">
+    <h4>Carbohidratos: </h4>
     <p>{{table.carbohydrates}}</p>
+    </div>
+    <div class="table-atr">
     <h4>Grasas: </h4><br>
     <p>{{table.fats}}</p>
-
+    </div>
     <div class="button-container">
-        <a href="/table/edit/{{table.id}}" class="edit">Editar</a>
-        <a href="/table/delete/{{table.id}}" class="delete">Borrar</a>
-    </div><br>
+        <a href="/tables/edit/{{table.id}}" class="edit">Editar</a>
+        <a href="/tables/delete/{{table.id}}" class="delete" onclick="return confirm('¿Estás seguro de querer eliminar esta tabla?')">Borrar</a>
+    </div>
 </div><br>
 <div class="button-container">
     <a href="/tables" class="back">Volver</a><br>

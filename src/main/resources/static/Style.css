@@ -9,7 +9,8 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f5f5f5;
-    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -18,56 +19,23 @@ body {
     padding: 20px;
 }
 
-header {
-    background-color: #6488AF;
-    color: #fff;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
-
-.logo {
-    font-size: 1.5em;
-}
-
-.nav-links {
-    display: flex;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #fff;
-    padding: 10px 20px;
-    margin-right: 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.nav-links a:hover {
-    background-color: #4CAF50;
-}
-
 main {
     padding: 50px 0;
     text-align: center;
 }
 
 .title{
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #6488AF;
     text-align: center;
+    color: #333;
+    margin-top: 50px;
+    font-size: 36px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
 }
 
 .hero {
-   /* background-image: url('https://via.placeholder.com/1500x500'); */
     background-size: cover;
     background-position: center;
-    /*color: #fff;*/
     padding: 100px 0;
     background-color: #fff;
     border-radius: 10px;
@@ -121,23 +89,52 @@ main {
     color: #666;
 }
 
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    background-color: #6488AF;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 1.5em;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #4CAF50;
+}
+
+/* Footer */
 footer {
     background-color: #6488AF;
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
+    margin-top: 20px;
 }
 
 .footer p {
     margin: 0;
-}
-
-html {
-    min-height: 100%;
-    position: relative;
 }
 
 /* Forms */
@@ -201,98 +198,168 @@ html {
     color: #4CAF50;
 }
 
-.button-container {
-    text-align: center;
-}
-
 /* JavaScript */
 input::placeholder {
     color: #aaa;
 }
 
+/*List of elements*/
 .List-elem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgrey;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin: 10px 0;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    margin: 20px auto;
+    max-width: 600px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .List-elem:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.List-elem .content-left {
+.content-left {
     flex: 1;
+    padding-right: 20px;
 }
 
-.List-elem .content-right {
-    margin-left: 20px;
+.content-right {
+    flex: 1;
+    text-align: right;
+}
+.content-left h3 {
+    margin-top: 0;
 }
 
 /* Products */
-.product-container{
-    max-width: 400px;
-    margin: 0 auto;
+.product-container {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-.product-container .edit {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-.product-container .delete {
-    display: inline-block;
-    background-color: red;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-.back {
-    display: inline-block;
-    background-color: #6488AF;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
-.product-container .edit:hover {
-    background-color: #45a049;
+.product-container:hover {
+    transform: translateY(-5px);
 }
-.product-container .delete:hover {
-    background-color: darkred;
-}
-.back:hover {
-    background-color: cornflowerblue;
-}
+
 .product-container h3 {
-    font-size: 1.5em;
-    color: #6488AF;
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.product-container h4 {
+    color: #666;
+    font-size: 24px;
     margin-bottom: 10px;
 }
 
 .product-container p {
-    font-size: 1.2em;
-    color: #666;
+    color: #444;
+    font-size: 20px;
     margin-bottom: 20px;
 }
 
-.product-container .button-container {
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.edit, .delete, .back {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #4caf50;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.edit:hover, .delete:hover, .back:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+}
+
+/*Nutricional table*/
+.table-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-container h3 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.table-container h4 {
+    font-size: 18px;
+}
+
+.table-container p {
+    font-size: 16px;
+}
+.table-atr {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
+    margin-bottom: 10px;
 }
+
+.table-atr h4 {
+    font-size: 18px;
+}
+
+.table-atr p {
+    margin-left: 10px;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.button-container a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+
+}
+.edit {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.delete {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.edit:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+}
+
+.delete:hover {
+    background-color: darkred;
+    transform: translateY(-3px);
+}
+
