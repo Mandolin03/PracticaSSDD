@@ -5,11 +5,9 @@
     <link rel="stylesheet" type="text/css" href="/Style.css">
 </head>
 <body>
-<p class="success-message">{{success}}</p>
+
 <h1 class="title">Edita el restaurante</h1>
-<br>
-<p class="success-message">{{success}}</p>
-<h1>Editar restaurante</h1>
+
 <form class="product-form" name="editRestaurantForm" action="/restaurants/edit/{{restaurant.id}}" method="post" onsubmit="return checkRestaurantForm()">
     <label for="name">Nombre:</label>
     <input type="name" id="name" name="name" value="{{restaurant.name}}"><br><br>

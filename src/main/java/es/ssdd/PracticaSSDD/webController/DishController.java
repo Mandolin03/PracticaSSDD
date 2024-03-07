@@ -18,13 +18,11 @@ public class DishController {
     @GetMapping("/dishes")
     public String listDishes(Model model) {
         model.addAttribute("dishes", dishService.getDishes());
-        model.addAttribute("success", " ");
         return "dishes/dishes";
     }
 
     @GetMapping("/new-dish")
-    public String showFormNewDish(Model model) {
-        model.addAttribute("success", "");
+    public String showFormNewDish() {
         return "dishes/new-dish";
     }
 
@@ -48,7 +46,6 @@ public class DishController {
     @GetMapping("/dishes/edit/{id}")
     public String editDishForm(@PathVariable Long id, Model model) {
         if (dishService.getDish(id) != null){
-            model.addAttribute("success", "");
             model.addAttribute("dish", dishService.getDish(id));
             return "dishes/edit-dish";
         } else {

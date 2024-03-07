@@ -18,13 +18,11 @@ public class RestaurantController {
     @GetMapping("/restaurants")
     public String getRestaurants(Model model){
         model.addAttribute("restaurants", restaurantService.getRestaurants());
-        model.addAttribute("success", " ");
         return "restaurants/restaurants";
     }
 
     @GetMapping("/new-restaurant")
     public String showFormNewRestaurant(Model model){
-        model.addAttribute("success", "");
         return "restaurants/new-restaurant";
     }
 
@@ -36,7 +34,7 @@ public class RestaurantController {
     @GetMapping("/restaurants/details/{id}")
     public String detailedRestaurant(@PathVariable Long id, Model model){
         if (restaurantService.getRestaurant(id) != null){
-            model.addAttribute("table", restaurantService.getRestaurant(id));
+            model.addAttribute("restaurant", restaurantService.getRestaurant(id));
             return "restaurants/restaurant";
         } else {
             return "redirect:/restaurants";
@@ -47,7 +45,6 @@ public class RestaurantController {
     @GetMapping("/restaurants/edit/{id}")
     public String editRestaurantForm(@PathVariable Long id, Model model){
         if (restaurantService.getRestaurant(id) != null){
-            model.addAttribute("success", "");
             model.addAttribute("restaurant", restaurantService.getRestaurant(id));
             return "restaurants/edit-restaurant";
         } else {
