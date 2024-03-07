@@ -1,7 +1,6 @@
 package es.ssdd.PracticaSSDD.service;
 
-import es.ssdd.PracticaSSDD.entities.Dish;
-import es.ssdd.PracticaSSDD.entities.NutricionalTable;
+import es.ssdd.PracticaSSDD.entities.Restaurant;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -10,31 +9,31 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
-public class NutricionalTableService {
-    private final Map<Long, NutricionalTable> tables = new HashMap<>();
+public class RestaurantService {
+    private final Map<Long, Restaurant> tables = new HashMap<>();
     private final AtomicLong nextId = new AtomicLong();
 
-    public NutricionalTable createTable(NutricionalTable table) {
+    public Restaurant createTable(Restaurant table) {
         long id = nextId.incrementAndGet();
         table.setId(id);
         tables.put(id, table);
         return table;
     }
 
-    public NutricionalTable getTable(Long id) {
+    public Restaurant getTable(Long id) {
         return tables.get(id);
     }
 
-    public Collection<NutricionalTable> getTables() {
+    public Collection<Restaurant> getTables() {
         return tables.values();
     }
 
-    public NutricionalTable editTable(Long id, NutricionalTable table) {
+    public Restaurant editTable(Long id, Restaurant table) {
 
         if (!tables.containsKey(id)) {
             return null;
         }
-        NutricionalTable original = tables.get(id);
+        Restaurant original = tables.get(id);
         if(table.getCalories() != null)original.setCalories(table.getCalories());
         if(table.getCarbohydrates() != null)original.setCarbohydrates(table.getCarbohydrates());
         if(table.getProtein() != null)original.setProtein(table.getProtein());

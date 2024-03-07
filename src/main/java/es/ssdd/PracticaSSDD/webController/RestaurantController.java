@@ -1,7 +1,7 @@
 package es.ssdd.PracticaSSDD.webController;
 
-import es.ssdd.PracticaSSDD.entities.NutricionalTable;
-import es.ssdd.PracticaSSDD.service.NutricionalTableService;
+import es.ssdd.PracticaSSDD.entities.Restaurant;
+import es.ssdd.PracticaSSDD.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-public class NutricionalTableController {
+public class RestaurantController {
     @Autowired
-    private NutricionalTableService tableService;
+    private RestaurantService tableService;
 
     @GetMapping("/tables")
     public String getTables(Model model){
@@ -29,7 +29,7 @@ public class NutricionalTableController {
     }
 
     @PostMapping("/new-table")
-    public String processFormNewTable(NutricionalTable table){
+    public String processFormNewTable(Restaurant table){
         tableService.createTable(table);
         return "redirect:/tables";
     }
@@ -56,7 +56,7 @@ public class NutricionalTableController {
 
     }
     @PostMapping("/tables/edit/{id}")
-    public String editTable(NutricionalTable table){
+    public String editTable(Restaurant table){
         tableService.editTable(table.getId(), table);
         return "redirect:/tables";
     }
