@@ -35,8 +35,18 @@ public class IngredientService {
         Ingredient original = ingredients.get(id);
         if(ingredient.getCategory() != null)original.setCategory(ingredient.getCategory());
         if(ingredient.getName() != null)original.setName((ingredient.getName()));
+        if(ingredient.getOrigin() != null)original.setOrigin((ingredient.getOrigin()));
         ingredients.put(id, original);
         return original;
+    }
+
+    public Ingredient putIngredient(Long id, Ingredient ingredient) {
+        if (!ingredients.containsKey(id)) {
+            return null;
+        }
+        ingredient.setId(id);
+        ingredients.put(id, ingredient);
+        return ingredient;
     }
 
     public boolean removeIngredient(Long id) {

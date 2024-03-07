@@ -18,13 +18,11 @@ public class IngredientController {
     @GetMapping("/ingredients")
     public String getIngredients(Model model){
         model.addAttribute("ingredients", ingredientService.getIngredients());
-        model.addAttribute("success", " ");
         return "ingredients/ingredients";
     }
 
     @GetMapping("/new-ingredient")
-    public String showFormNewIngredient(Model model){
-        model.addAttribute("success", "");
+    public String showFormNewIngredient(){
         return "ingredients/new-ingredient";
     }
 
@@ -46,7 +44,6 @@ public class IngredientController {
     @GetMapping("/ingredients/edit/{id}")
     public String editDishForm(@PathVariable Long id, Model model){
         if (ingredientService.getIngredient(id) != null){
-            model.addAttribute("success", " ");
             model.addAttribute("ingredient", ingredientService.getIngredient(id));
             return "ingredients/edit-ingredient";
         } else {

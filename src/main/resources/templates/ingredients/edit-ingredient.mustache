@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang = "es">
 <head>
+    <meta charset="UTF-8">
     <title>Nuevo ingrediente</title>
     <link rel="stylesheet" type="text/css" href="/Style.css">
 </head>
 <body>
-<p class="success-message">{{success}}</p>
 <form class="product-form" name="editIngredientForm" action="/ingredients/edit/{{ingredient.id}}" method="post" onsubmit="return checkIngredientForm()">
     <label for="name">Nombre:</label>
     <input type="text" id="name" name="name" value="{{ingredient.name}}"><br><br>
     <label for="category">Categoría:</label>
     <input type="text" id="category" name="category" value="{{ingredient.category}}"><br><br>
+    <label for="category">Origen:</label>
+    <input type="text" id="origin" name="origin" value="{{ingredient.origin}}"><br><br>
     <div class="button-container">
         <input type="submit" value="Editar">
         <a href="/ingredients" class="cancel">Cancelar</a><br><br>

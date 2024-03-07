@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Ingredientes</title>
     <link rel="stylesheet" type="text/css" href="/Style.css">
 
@@ -23,9 +24,11 @@
         {{#ingredients}}
         <div class="List-elem">
         <div class="content-left">
-            <a href="/ingredients/details/{{id}}" style="text-decoration: none"> <h3>{{name}}</h3></a>
+            <a href="/ingredients/details/{{id}}"> <h3>{{name}}</h3></a>
             <br>
             <p>Categoría: {{category}}</p>
+            <br>
+            <p>Origen: {{origin}}</p>
             <br>
         </div>
         <div class="content-right">
