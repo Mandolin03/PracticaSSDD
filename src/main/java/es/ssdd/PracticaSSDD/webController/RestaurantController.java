@@ -13,56 +13,56 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RestaurantController {
     @Autowired
-    private RestaurantService tableService;
+    private RestaurantService restaurantService;
 
-    @GetMapping("/tables")
-    public String getTables(Model model){
-        model.addAttribute("tables", tableService.getTables());
+    @GetMapping("/restaurants")
+    public String getRestaurants(Model model){
+        model.addAttribute("restaurants", restaurantService.getRestaurants());
         model.addAttribute("success", " ");
-        return "tables/tables";
+        return "restaurants/restaurants";
     }
 
-    @GetMapping("/new-table")
-    public String showFormNewTable(Model model){
+    @GetMapping("/new-restaurant")
+    public String showFormNewRestaurant(Model model){
         model.addAttribute("success", "");
-        return "tables/new-table";
+        return "restaurants/new-restaurant";
     }
 
-    @PostMapping("/new-table")
-    public String processFormNewTable(Restaurant table){
-        tableService.createTable(table);
-        return "redirect:/tables";
+    @PostMapping("/new-restaurant")
+    public String processFormNewRestaurant(Restaurant restaurant){
+        restaurantService.createTable(restaurant);
+        return "redirect:/restaurants";
     }
-    @GetMapping("/tables/details/{id}")
-    public String detailedIngredient(@PathVariable Long id, Model model){
-        if (tableService.getTable(id) != null){
-            model.addAttribute("table", tableService.getTable(id));
-            return "tables/table";
+    @GetMapping("/restaurants/details/{id}")
+    public String detailedRestaurant(@PathVariable Long id, Model model){
+        if (restaurantService.getRestaurant(id) != null){
+            model.addAttribute("table", restaurantService.getRestaurant(id));
+            return "restaurants/restaurant";
         } else {
-            return "redirect:/tables";
+            return "redirect:/restaurants";
         }
 
     }
 
-    @GetMapping("/tables/edit/{id}")
-    public String editTableForm(@PathVariable Long id, Model model){
-        if (tableService.getTable(id) != null){
+    @GetMapping("/restaurants/edit/{id}")
+    public String editRestaurantForm(@PathVariable Long id, Model model){
+        if (restaurantService.getRestaurant(id) != null){
             model.addAttribute("success", "");
-            model.addAttribute("table", tableService.getTable(id));
-            return "tables/edit-table";
+            model.addAttribute("restaurant", restaurantService.getRestaurant(id));
+            return "restaurants/edit-restaurant";
         } else {
-            return "redirect:/tables";
+            return "redirect:/restaurants";
         }
 
     }
-    @PostMapping("/tables/edit/{id}")
-    public String editTable(Restaurant table){
-        tableService.editTable(table.getId(), table);
-        return "redirect:/tables";
+    @PostMapping("/restaurants/edit/{id}")
+    public String editRestaurant(Restaurant restaurant){
+        restaurantService.editRestaurant(restaurant.getId(), restaurant);
+        return "redirect:/restaurants";
     }
-    @GetMapping("/tables/delete/{id}")
-    public String deleteTable(@PathVariable Long id){
-        tableService.removeTable(id);
-        return "redirect:/tables";
+    @GetMapping("/restaurants/delete/{id}")
+    public String deleteRestaurant(@PathVariable Long id){
+        restaurantService.removeRestaurant(id);
+        return "redirect:/restaurants";
     }
 }

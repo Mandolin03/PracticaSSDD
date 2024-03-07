@@ -31,18 +31,18 @@ function checkIngredientForm(){
     return true;
 }
 
-function checkTableForm(){
-    let calories = document.forms["tableForm"]["calories"].value
-    let protein = document.forms["tableForm"]["calories"].value
-    let carbohydrates = document.forms["tableForm"]["carbohydrates"].value
-    let fats = document.forms["tableForm"]["fats"].value
+function checkRestaurantForm(){
+    let name = document.forms["restaurantForm"]["name"].value
+    let style = document.forms["restaurantForm"]["style"].value
+    let quality = document.forms["restaurantForm"]["quality"].value
+    let location = document.forms["restaurantForm"]["location"].value
 
-    if(calories === "" || protein === "" || carbohydrates === "" || fats === ""){
+    if(name === "" || style === "" || quality === "" || location === ""){
         alert("Todos los campos son obligatorios.");
-        document.getElementById("calories").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("protein").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("carbohydrates").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("fats").setAttribute("placeholder", "Este campo es obligatorio.");
+        document.getElementById("name").setAttribute("placeholder", "Este campo es obligatorio.");
+        document.getElementById("style").setAttribute("placeholder", "Este campo es obligatorio.");
+        document.getElementById("quality").setAttribute("placeholder", "Este campo es obligatorio.");
+        document.getElementById("location").setAttribute("placeholder", "Este campo es obligatorio.");
         return false;
     }
     return true;

@@ -14,39 +14,39 @@ import java.util.Collection;
 public class RestaurantRestController {
 
     @Autowired
-    private RestaurantService tableService;
+    private RestaurantService restaurantService;
 
-    @GetMapping("/tables")
-    public ResponseEntity<Collection<Restaurant>> getTables() {
-        return ResponseEntity.ok(tableService.getTables());
+    @GetMapping("/restaurants")
+    public ResponseEntity<Collection<Restaurant>> getRestaurants() {
+        return ResponseEntity.ok(restaurantService.getRestaurants());
     }
 
-    @GetMapping("/tables/{id}")
-    public ResponseEntity<Restaurant> getTable(@PathVariable Long id) {
-        Restaurant table = tableService.getTable(id);
-        if (table == null) {
+    @GetMapping("/restaurants/{id}")
+    public ResponseEntity<Restaurant> getRestaurant(@PathVariable Long id) {
+        Restaurant restaurant = restaurantService.getRestaurant(id);
+        if (restaurant == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(table);
+        return ResponseEntity.ok(restaurant);
     }
 
-    @PostMapping("/new-table")
+    @PostMapping("/new-restaurant")
     public ResponseEntity<Restaurant> createTable(@RequestBody Restaurant table) {
-        return ResponseEntity.status(201).body(tableService.createTable(table));
+        return ResponseEntity.status(201).body(restaurantService.createTable(table));
     }
 
-    @PutMapping("/edit-table/{id}")
-    public ResponseEntity<Restaurant> editTable(@PathVariable Long id, @RequestBody Restaurant table) {
-        Restaurant original = tableService.editTable(id, table);
+    @PutMapping("/edit-restaurant/{id}")
+    public ResponseEntity<Restaurant> editTable(@PathVariable Long id, @RequestBody Restaurant restaurant) {
+        Restaurant original = restaurantService.editRestaurant(id, restaurant);
         if (original == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(original);
     }
 
-    @DeleteMapping("/delete-table/{id}")
-    public ResponseEntity<Void> removeTable(@PathVariable Long id) {
-        if (tableService.removeTable(id)) {
+    @DeleteMapping("/delete-restaurant/{id}")
+    public ResponseEntity<Void> removeRestaurant(@PathVariable Long id) {
+        if (restaurantService.removeRestaurant(id)) {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

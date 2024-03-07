@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Menú del Restaurante SSDD</title>
+   <link rel="stylesheet" type="text/css" href="/Style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-links">
+            <a href="/">Inicio</a>
+            <a href="/dishes">Platos</a>
+            <a href="/ingredients">Ingredientes</a>
+            <a href="/restaurants">Restaurantes</a>
+        </div>
+    </div>
+</nav>
+<h1 class="title">Restaurantes</h1>
+<div class="button-container">
+    <a href="/new-restaurant" class="button">Agregar restaurante</a>
+</div>
+{{#restaurants}}
+<div class="List-elem">
+    <div class="content-left">
+        <a href="/restaurants/details/{{id}}" style="text-decoration: none"> <h3>{{name}}</h3></a>
+        <br>
+            <p>Estilo: {{style}}</p>
+            <p>Calidad: {{quality}}</p>
+            <p>Ubicación: {{location}}</p>
+        <br>
+        </div>
+        <div class="content-right">
+            <a href="/restaurants/edit/{{id}}" class="edit">Editar restaurante</a>
+            <br>
+            <br>
+            <a href="/restaurants/delete/{{id}}" class="delete"
+               onclick="return confirm('¿Estás seguro de querer eliminar este restaurante?')">Borrar restaurante</a>
+        </div>
+            </div>
+        {{/restaurants}}
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Blog Restaurante SSDD. Todos los derechos reservados.</p>
+    </div>
+</footer>
+</body>
+</html>

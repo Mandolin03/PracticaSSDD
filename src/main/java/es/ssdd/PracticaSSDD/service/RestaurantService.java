@@ -10,40 +10,43 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class RestaurantService {
-    private final Map<Long, Restaurant> tables = new HashMap<>();
+    private final Map<Long, Restaurant> restaurants = new HashMap<>();
     private final AtomicLong nextId = new AtomicLong();
 
-    public Restaurant createTable(Restaurant table) {
+    public Restaurant createTable(Restaurant restaurant) {
         long id = nextId.incrementAndGet();
-        table.setId(id);
-        tables.put(id, table);
-        return table;
+        restaurant.setId(id);
+        restaurants.put(id, restaurant);
+        return restaurant;
     }
 
-    public Restaurant getTable(Long id) {
-        return tables.get(id);
+    public Restaurant getRestaurant(Long id) {
+
+        return restaurants.get(id);
     }
 
-    public Collection<Restaurant> getTables() {
-        return tables.values();
+    public Collection<Restaurant> getRestaurants() {
+
+        return restaurants.values();
     }
 
-    public Restaurant editTable(Long id, Restaurant table) {
+    public Restaurant editRestaurant(Long id, Restaurant restaurant) {
 
-        if (!tables.containsKey(id)) {
+        if (!restaurants.containsKey(id)) {
             return null;
         }
-        Restaurant original = tables.get(id);
-        if(table.getCalories() != null)original.setCalories(table.getCalories());
-        if(table.getCarbohydrates() != null)original.setCarbohydrates(table.getCarbohydrates());
-        if(table.getProtein() != null)original.setProtein(table.getProtein());
-        if(table.getFats() != null)original.setFats(table.getFats());
+        Restaurant original = restaurants.get(id);
+        if(restaurant.getName() != null)original.setName(restaurant.getName());
+        if(restaurant.getStyle() != null)original.setStyle(restaurant.getStyle());
+        if(restaurant.getQuality() != null)original.setQuality(restaurant.getQuality());
+        if(restaurant.getLocation() != null)original.setLocation(restaurant.getLocation());
 
-        tables.put(id, original);
+        restaurants.put(id, original);
         return original;
     }
 
-    public boolean removeTable(Long id) {
-        return tables.remove(id) != null;
+    public boolean removeRestaurant(Long id) {
+
+        return restaurants.remove(id) != null;
     }
 }

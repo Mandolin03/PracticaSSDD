@@ -4,14 +4,14 @@ public class Restaurant {
     private Long id;
     private String name;
     private String style;
-    private int quality;
+    private Integer quality;
     private String location;
 
     public Restaurant(){
 
     }
 
-    public Restaurant(Long id, String name, String cook, int quality, String location) {
+    public Restaurant(Long id, String name, String cook, Integer quality, String location) {
         this.id = id;
         this.name = name;
         this.style = cook;
@@ -43,11 +43,11 @@ public class Restaurant {
         this.style = style;
     }
 
-    public int getQuality() {
+    public Integer getQuality() {
         return quality;
     }
 
-    public void setQuality(int quality) {
+    public void setQuality(Integer quality) {
         this.quality = quality;
     }
 
