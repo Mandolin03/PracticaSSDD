@@ -14,7 +14,7 @@ public class DishService {
     private final AtomicLong nextId = new AtomicLong();
 
     public Dish createDish(Dish dish) {
-        long id = nextId.incrementAndGet();
+        long id = nextId.getAndIncrement();
         dish.setId(id);
         dishes.put(id, dish);
         return dish;
@@ -36,8 +36,18 @@ public class DishService {
         Dish original = dishes.get(id);
         if(dish.getCategory() != null)original.setCategory(dish.getCategory());
         if(dish.getName() != null)original.setName((dish.getName()));
+        if(dish.getPrice() != null)original.setPrice((dish.getPrice()));
         dishes.put(id, original);
         return original;
+    }
+
+    public Dish putDish(Long id, Dish dish) {
+        if (!dishes.containsKey(id)) {
+            return null;
+        }
+        dish.setId(id);
+        dishes.put(id, dish);
+        return dish;
     }
 
     public boolean removeDish(Long id) {

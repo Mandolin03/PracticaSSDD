@@ -14,7 +14,7 @@ public class IngredientService {
     private final AtomicLong nextId = new AtomicLong();
 
     public Ingredient createIngredient(Ingredient ingredient) {
-        long id = nextId.incrementAndGet();
+        long id = nextId.getAndIncrement();
         ingredient.setId(id);
         ingredients.put(id, ingredient);
         return ingredient;

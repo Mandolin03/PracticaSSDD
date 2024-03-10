@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/restaurants")
 public class RestaurantRestController {
 
     @Autowired
     private RestaurantService restaurantService;
 
-    @GetMapping("/restaurants")
+    @GetMapping
     public ResponseEntity<Collection<Restaurant>> getRestaurants() {
         return ResponseEntity.ok(restaurantService.getRestaurants());
     }
 
-    @GetMapping("/restaurants/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Restaurant> getRestaurant(@PathVariable Long id) {
         Restaurant restaurant = restaurantService.getRestaurant(id);
         if (restaurant == null) {
@@ -30,21 +30,28 @@ public class RestaurantRestController {
         return ResponseEntity.ok(restaurant);
     }
 
-    @PostMapping("/new-restaurant")
-    public ResponseEntity<Restaurant> createTable(@RequestBody Restaurant table) {
+    @PostMapping
+    public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant table) {
         return ResponseEntity.status(201).body(restaurantService.createTable(table));
     }
 
-    @PutMapping("/edit-restaurant/{id}")
-    public ResponseEntity<Restaurant> editTable(@PathVariable Long id, @RequestBody Restaurant restaurant) {
-        Restaurant original = restaurantService.editRestaurant(id, restaurant);
+    @PutMapping("/{id}")
+    public ResponseEntity<Restaurant> editRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant) {
+        Restaurant original = restaurantService.putRestaurant(id, restaurant);
         if (original == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(original);
     }
 
-    @DeleteMapping("/delete-restaurant/{id}")
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> patchRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant){
+        if(restaurantService.editRestaurant(id, restaurant) == null)return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().build();
+    }
+
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> removeRestaurant(@PathVariable Long id) {
         if (restaurantService.removeRestaurant(id)) {
             return ResponseEntity.ok().build();

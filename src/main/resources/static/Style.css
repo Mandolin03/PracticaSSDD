@@ -11,6 +11,11 @@ body {
     background-color: #e6e6e6;
     margin: 0;
     padding: 0;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+
+
 }
 
 a {
@@ -232,6 +237,7 @@ input::placeholder {
     max-width: 600px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
 }
 
 .List-elem:hover {
@@ -261,6 +267,7 @@ input::placeholder {
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    flex: 1;
 }
 
 .product-container:hover {

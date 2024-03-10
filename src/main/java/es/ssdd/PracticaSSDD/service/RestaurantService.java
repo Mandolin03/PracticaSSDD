@@ -14,7 +14,7 @@ public class RestaurantService {
     private final AtomicLong nextId = new AtomicLong();
 
     public Restaurant createTable(Restaurant restaurant) {
-        long id = nextId.incrementAndGet();
+        long id = nextId.getAndIncrement();
         restaurant.setId(id);
         restaurants.put(id, restaurant);
         return restaurant;
@@ -43,6 +43,15 @@ public class RestaurantService {
 
         restaurants.put(id, original);
         return original;
+    }
+
+    public Restaurant putRestaurant(Long id, Restaurant restaurant){
+        if (!restaurants.containsKey(id)) {
+            return null;
+        }
+        restaurant.setId(id);
+        restaurants.put(id, restaurant);
+        return restaurant;
     }
 
     public boolean removeRestaurant(Long id) {

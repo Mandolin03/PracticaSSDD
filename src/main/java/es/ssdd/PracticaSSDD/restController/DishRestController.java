@@ -9,17 +9,17 @@ import es.ssdd.PracticaSSDD.service.DishService;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/dishes")
 public class DishRestController {
     @Autowired
     private DishService dishService;
 
-    @GetMapping("/dishes")
+    @GetMapping
     public ResponseEntity<Collection<Dish>> obtainAllDishes() {
         return ResponseEntity.ok(dishService.getDishes());
     }
 
-    @GetMapping("/dishes/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Dish> obtainDish(@PathVariable Long id) {
         Dish dish = dishService.getDish(id);
         if (dish == null) {
@@ -28,21 +28,27 @@ public class DishRestController {
         return ResponseEntity.ok(dish);
     }
 
-    @PostMapping("/new-dish")
+    @PostMapping
     public ResponseEntity<Dish> createDish(@RequestBody Dish dish) {
         return ResponseEntity.status(201).body(dishService.createDish(dish));
     }
 
-    @PutMapping("/edit-dish/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Dish> editDish(@PathVariable Long id, @RequestBody Dish dish) {
-        Dish editDish = dishService.editDish(id, dish);
+        Dish editDish = dishService.putDish(id, dish);
         if (editDish == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(editDish);
     }
+    
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> patchDish(@PathVariable Long id, @RequestBody Dish dish){
+        if(dishService.editDish(id, dish) == null)return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().build();
+    }
 
-    @DeleteMapping("/delete-dish/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> removeDish(@PathVariable Long id) {
         if (dishService.removeDish(id)) {
             return ResponseEntity.ok().build();
