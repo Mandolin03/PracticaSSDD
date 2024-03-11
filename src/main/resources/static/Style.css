@@ -10,10 +10,11 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #e6e6e6;
     margin: 0;
-    padding: 0;
     display: flex;
     min-height: 100%;
     flex-direction: column;
+    position: relative;
+    padding-bottom: 60px;
 }
 
 a {
@@ -143,6 +144,7 @@ main {
 html {
     min-height: 100%;
     position: relative;
+    margin: 0;
 }
 
 /* Footer */
@@ -151,7 +153,7 @@ footer {
     color: white;
     text-align: center;
     padding: 20px 0;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     margin-top: 20px;
