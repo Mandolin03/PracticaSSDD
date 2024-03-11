@@ -14,8 +14,6 @@ body {
     display: flex;
     min-height: 100%;
     flex-direction: column;
-
-
 }
 
 a {
@@ -142,13 +140,18 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
+html {
+    min-height: 100%;
+    position: relative;
+}
+
 /* Footer */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 20px 0;
-    position: relative;
+    position: absolute;
     bottom: 0;
     width: 100%;
     margin-top: 20px;
