@@ -13,8 +13,6 @@ body {
     display: flex;
     min-height: 100%;
     flex-direction: column;
-    position: relative;
-    padding-bottom: 60px;
 }
 
 a {
