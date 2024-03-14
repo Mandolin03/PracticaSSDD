@@ -3,7 +3,7 @@
 <head>
     <title>Nuevo restaurante</title>
     <link rel="stylesheet" type="text/css" href="/Style.css">
-
+    <script src="/script.js"></script>
 </head>
 
 <body>
@@ -11,13 +11,13 @@
 <br>
 <form class="product-form" name="restaurantForm" action="/new-restaurant" method="post" onsubmit="return checkRestaurantForm()">
     <label for="name">Nombre:</label>
-    <input type="name" id="name" name="name"><br><br>
+    <input type="text" id="name" name="name"><br><br>
     <label for="style">Estilo:</label>
-    <input type="name" id="style" name="style"><br><br>
+    <input type="text" id="style" name="style"><br><br>
     <label for="quality">Calidad:</label>
     <input type="number" id="quality" name="quality"><br><br>
     <label for="location">Ubicación:</label>
-    <input type="name" id="location" name="location"><br><br>
+    <input type="text" id="location" name="location"><br><br>
     <div class="button-container">
     <input type="submit" value="Agregar"><br>
     <a href="/restaurants" class="cancel">Cancelar</a><br><br>

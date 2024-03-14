@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>Nuevo ingrediente</title>
     <link rel="stylesheet" type="text/css" href="/Style.css">
+    <script src="/script.js"></script>
+
 </head>
 <body>
 <h1 class="title">Añade un nuevo ingrediente</h1>
 <br>
-    <form class="product-form" name="ingredientForm" action="/new-ingredient" method="post" onsubmit="return checkRestaurantForm()">
+    <form class="product-form" name="ingredientForm" action="/new-ingredient" method="post" onsubmit="return checkIngredientForm()">
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name"><br><br>
         <label for="category">Categoría:</label>

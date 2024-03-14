@@ -3,20 +3,22 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="/Style.css">
+    <script src="/script.js"></script>
+
 </head>
 <body>
 
 <h1 class="title">Edita el restaurante</h1>
 
-<form class="product-form" name="editRestaurantForm" action="/restaurants/edit/{{restaurant.id}}" method="post" onsubmit="return checkRestaurantForm()">
+<form class="product-form" name="restaurantForm" action="/restaurants/edit/{{restaurant.id}}" method="post" onsubmit="return checkRestaurantForm()">
     <label for="name">Nombre:</label>
-    <input type="name" id="name" name="name" value="{{restaurant.name}}"><br><br>
+    <input type="text" id="name" name="name" value="{{restaurant.name}}"><br><br>
     <label for="style">Estilo:</label>
-    <input type="name" id="style" name="style" value="{{restaurant.style}}"><br><br>
+    <input type="text" id="style" name="style" value="{{restaurant.style}}"><br><br>
     <label for="quality">Calidad:</label>
     <input type="number" id="quality" name="quality" value="{{restaurant.quality}}"><br><br>
     <label for="location">Ubicación:</label>
-    <input type="name" id="location" name="location" value="{{restaurant.location}}"><br><br>
+    <input type="text" id="location" name="location" value="{{restaurant.location}}"><br><br>
     <div class="button-container">
         <input type="submit" value="Editar">
         <a href="/restaurants" class="cancel">Cancelar</a><br><br>

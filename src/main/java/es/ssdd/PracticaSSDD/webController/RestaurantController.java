@@ -16,24 +16,25 @@ public class RestaurantController {
     private RestaurantService restaurantService;
 
     @GetMapping("/restaurants")
-    public String getRestaurants(Model model){
+    public String getRestaurants(Model model) {
         model.addAttribute("restaurants", restaurantService.getRestaurants());
         return "restaurants/restaurants";
     }
 
     @GetMapping("/new-restaurant")
-    public String showFormNewRestaurant(Model model){
+    public String showFormNewRestaurant() {
         return "restaurants/new-restaurant";
     }
 
     @PostMapping("/new-restaurant")
-    public String processFormNewRestaurant(Restaurant restaurant){
+    public String processFormNewRestaurant(Restaurant restaurant) {
         restaurantService.createTable(restaurant);
         return "redirect:/restaurants";
     }
+
     @GetMapping("/restaurants/details/{id}")
-    public String detailedRestaurant(@PathVariable Long id, Model model){
-        if (restaurantService.getRestaurant(id) != null){
+    public String detailedRestaurant(@PathVariable Long id, Model model) {
+        if (restaurantService.getRestaurant(id) != null) {
             model.addAttribute("restaurant", restaurantService.getRestaurant(id));
             return "restaurants/restaurant";
         } else {
@@ -43,8 +44,8 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurants/edit/{id}")
-    public String editRestaurantForm(@PathVariable Long id, Model model){
-        if (restaurantService.getRestaurant(id) != null){
+    public String editRestaurantForm(@PathVariable Long id, Model model) {
+        if (restaurantService.getRestaurant(id) != null) {
             model.addAttribute("restaurant", restaurantService.getRestaurant(id));
             return "restaurants/edit-restaurant";
         } else {
@@ -52,13 +53,15 @@ public class RestaurantController {
         }
 
     }
+
     @PostMapping("/restaurants/edit/{id}")
-    public String editRestaurant(Restaurant restaurant){
+    public String editRestaurant(Restaurant restaurant) {
         restaurantService.editRestaurant(restaurant.getId(), restaurant);
         return "redirect:/restaurants";
     }
+
     @GetMapping("/restaurants/delete/{id}")
-    public String deleteRestaurant(@PathVariable Long id){
+    public String deleteRestaurant(@PathVariable Long id) {
         restaurantService.removeRestaurant(id);
         return "redirect:/restaurants";
     }

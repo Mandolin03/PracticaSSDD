@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <title>Nuevo ingrediente</title>
     <link rel="stylesheet" type="text/css" href="/Style.css">
+    <script src="/script.js"></script>
 </head>
 <body>
 <h1 class="title">Edita el ingrediente</h1>
 <br>
-<form class="product-form" name="editIngredientForm" action="/ingredients/edit/{{ingredient.id}}" method="post" onsubmit="return checkIngredientForm()">
+<form class="product-form" name="ingredientForm" action="/ingredients/edit/{{ingredient.id}}" method="post" onsubmit="return checkIngredientForm()">
     <label for="name">Nombre:</label>
     <input type="text" id="name" name="name" value="{{ingredient.name}}"><br><br>
     <label for="category">Categoría:</label>
     <input type="text" id="category" name="category" value="{{ingredient.category}}"><br><br>
-    <label for="category">Origen:</label>
+    <label for="origin">Origen:</label>
     <input type="text" id="origin" name="origin" value="{{ingredient.origin}}"><br><br>
     <div class="button-container">
         <input type="submit" value="Editar">

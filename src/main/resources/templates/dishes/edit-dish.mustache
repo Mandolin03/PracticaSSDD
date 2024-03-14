@@ -8,7 +8,7 @@
 <body>
 <h1 class="title">Edita el plato</h1>
 <br>
-<form class="product-form" name="editDishForm" action="/dishes/edit/{{dish.id}}" method="post" onsubmit="return checkDishForm()">
+<form class="product-form" name="dishForm" action="/dishes/edit/{{dish.id}}" method="post" onsubmit="return checkDishForm()">
     <label for="name">Nombre:</label>
     <input type="text" id="name" name="name" value="{{dish.name}}"><br><br>
     <label for="category">Categoría:</label>
