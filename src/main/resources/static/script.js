@@ -1,35 +1,35 @@
 function checkDishForm() {
-    let name = document.forms["dishForm"]["name"].value;
-    let category = document.forms["dishForm"]["category"].value;
-    let price = document.forms["dishForm"]["price"].value;
-    if (name === "" || category === "" || price === "") {
+    let name = document.forms["dishForm"]["name"];
+    let category = document.forms["dishForm"]["category"];
+    let price = document.forms["dishForm"]["price"];
+    if (name.value === "" || category.value === "" || price.value === "") {
         alert("Todos los campos son obligatorios.");
-        document.getElementById("name").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("category").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("price").setAttribute("placeholder", "Este campo es obligatorio.");
-
+        name.setAttribute("placeholder", "Este campo es obligatorio.");
+        category.setAttribute("placeholder", "Este campo es obligatorio.");
+        price.setAttribute("placeholder", "Este campo es obligatorio.");
         return false;
     }
-    else if(isNaN(price) || price <= 0){
+    const number = parseFloat(price.value);
+    if (isNaN(number) || number <= 0) {
         alert("El precio deber ser un real positivo.");
         let input = document.getElementById("price");
         input.setAttribute("placeholder", "Debe ser un real");
-        input.setAttribute("value", "");
+        input.value = "";
         return false;
     }
     return true;
 }
 
-function checkIngredientForm(){
-    let name = document.forms["ingredientForm"]["name"].value;
-    let category = document.forms["ingredientForm"]["category"].value;
-    let origin = document.forms["ingredientForm"]["origin"].value;
+function checkIngredientForm() {
+    let name = document.forms["ingredientForm"]["name"];
+    let category = document.forms["ingredientForm"]["category"];
+    let origin = document.forms["ingredientForm"]["origin"];
 
-    if (name === "" || category === "" || origin === "") {
+    if (name.value === "" || category.value === "" || origin.value === "") {
         alert("Todos los campos son obligatorios.");
-        document.getElementById("name").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("category").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("origin").setAttribute("placeholder", "Este campo es obligatorio.");
+        name.setAttribute("placeholder", "Este campo es obligatorio.");
+        category.setAttribute("placeholder", "Este campo es obligatorio.");
+        origin.setAttribute("placeholder", "Este campo es obligatorio.");
         return false;
     }
     return true;
@@ -37,17 +37,24 @@ function checkIngredientForm(){
 
 
 function checkRestaurantForm() {
-    let name = document.forms["restaurantForm"]["name"].value;
-    let style = document.forms["restaurantForm"]["style"].value;
-    let quality = document.forms["restaurantForm"]["quality"].value;
-    let location = document.forms["restaurantForm"]["location"].value;
+    let name = document.forms["restaurantForm"]["name"];
+    let style = document.forms["restaurantForm"]["style"];
+    let quality = document.forms["restaurantForm"]["quality"];
+    let location = document.forms["restaurantForm"]["location"];
 
-    if (name === "" || style === "" || quality === "" || location === "") {
+    if (name.value === "" || style.value === "" || quality.value === "" || location.value === "") {
         alert("Todos los campos son obligatorios.");
-        document.getElementById("name").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("style").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("quality").setAttribute("placeholder", "Este campo es obligatorio.");
-        document.getElementById("location").setAttribute("placeholder", "Este campo es obligatorio.");
+        name.setAttribute("placeholder", "Este campo es obligatorio.");
+        style.setAttribute("placeholder", "Este campo es obligatorio.");
+        quality.setAttribute("placeholder", "Este campo es obligatorio.");
+        location.setAttribute("placeholder", "Este campo es obligatorio.");
+        return false;
+    }
+    const number = parseInt(quality.value);
+    if (number < 0 || number > 10) {
+        alert("La calidad debe ser entre 0 y 10");
+        quality.setAttribute("placeholder", "La calidad debe ser entre 0 y 10 ");
+        quality.value = "";
         return false;
     }
     return true;

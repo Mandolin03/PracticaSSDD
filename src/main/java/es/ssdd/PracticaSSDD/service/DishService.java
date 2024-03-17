@@ -38,6 +38,7 @@ public class DishService {
         if(dish.getName() != null)original.setName((dish.getName()));
         if(dish.getPrice() != null)original.setPrice((dish.getPrice()));
         dishes.put(id, original);
+
         return original;
     }
 
