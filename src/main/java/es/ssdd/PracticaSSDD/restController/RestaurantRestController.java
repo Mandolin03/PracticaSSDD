@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.MalformedParametersException;
 import java.util.Collection;
 
 @RestController
@@ -32,21 +33,34 @@ public class RestaurantRestController {
 
     @PostMapping
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant table) {
-        return ResponseEntity.status(201).body(restaurantService.createTable(table));
+        try{
+            return ResponseEntity.status(201).body(restaurantService.createTable(table));
+        }catch (MalformedParametersException e){
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Restaurant> editRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant) {
-        Restaurant original = restaurantService.putRestaurant(id, restaurant);
-        if (original == null) {
-            return ResponseEntity.notFound().build();
+        Restaurant original;
+        try{
+            original = restaurantService.putRestaurant(id, restaurant);
+        }catch (MalformedParametersException e){
+            return ResponseEntity.badRequest().build();
         }
+        if (original == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(original);
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Void> patchRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant){
-        if(restaurantService.editRestaurant(id, restaurant) == null)return ResponseEntity.notFound().build();
+        Restaurant edited;
+        try{
+            edited = restaurantService.editRestaurant(id, restaurant);
+        }catch (MalformedParametersException e){
+            return ResponseEntity.badRequest().build();
+        }
+        if(edited == null)return ResponseEntity.notFound().build();
         return ResponseEntity.ok().build();
     }
 

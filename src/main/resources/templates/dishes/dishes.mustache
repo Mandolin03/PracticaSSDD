@@ -16,7 +16,7 @@
         </div>
     </div>
 </nav>
-<div class="maincontent">
+
 <h1 class="title">Platos</h1>
 <div class="button-container">
     <a href="/new-dish" class="button">Agregar plato</a>
@@ -24,7 +24,7 @@
 {{#dishes}}
     <div class="List-elem">
         <div class="content-left">
-           <a href="/dishes/details/{{id}}" style="text-decoration: none"> <h3>{{name}}</h3></a>
+           <a href="/dishes/details/{{id}}"> <h3>{{name}}</h3></a>
             <br>
             <p>Precio: {{formattedPrice}}&euro;</p>
             <p>Categoría: {{category}}</p>

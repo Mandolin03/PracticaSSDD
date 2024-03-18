@@ -237,7 +237,7 @@ input::placeholder {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px auto;
-    max-width: 600px;
+    min-width: 700px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 1;

@@ -14,7 +14,7 @@
     <label for="category">Categoría:</label>
     <input type="text" id="category" name="category" value="{{dish.category}}"><br><br>
     <label for="price">Precio:</label>
-    <input id="price" name="price" step="0.01" value="{{dish.price}}"><br><br>
+    <input id="price" name="price" step="0.01" value="{{dish.price}}" min="0"><br><br>
     <div class="button-container">
         <input type="submit" value="Editar">
         <a href="/dishes" class="cancel">Cancelar</a><br><br>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.MalformedParametersException;
 import java.util.Collection;
 
 @RestController
@@ -30,21 +31,34 @@ public class IngredientRestController {
 
     @PostMapping
     public ResponseEntity<Ingredient> createIngredient(@RequestBody Ingredient ingredient) {
-        return ResponseEntity.status(201).body(ingredientService.createIngredient(ingredient));
+        try {
+            return ResponseEntity.status(201).body(ingredientService.createIngredient(ingredient));
+        } catch (MalformedParametersException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Ingredient> editIngredient(@PathVariable Long id, @RequestBody Ingredient ingredient) {
-        Ingredient editIngredient = ingredientService.putIngredient(id, ingredient);
-        if (editIngredient == null) {
-            return ResponseEntity.notFound().build();
+        Ingredient editIngredient;
+        try {
+            editIngredient = ingredientService.putIngredient(id, ingredient);
+        } catch (MalformedParametersException e) {
+            return ResponseEntity.badRequest().build();
         }
+        if (editIngredient == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(editIngredient);
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Void> patchIngredient(@PathVariable Long id, @RequestBody Ingredient ingredient) {
-        if (ingredientService.editIngredient(id, ingredient) == null) return ResponseEntity.notFound().build();
+        Ingredient edited;
+        try{
+            edited = ingredientService.editIngredient(id, ingredient);
+        }catch (MalformedParametersException e){
+            return ResponseEntity.badRequest().build();
+        }
+        if (edited == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok().build();
     }
 

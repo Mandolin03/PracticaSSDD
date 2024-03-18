@@ -3,6 +3,7 @@ package es.ssdd.PracticaSSDD.service;
 import es.ssdd.PracticaSSDD.entities.Ingredient;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.MalformedParametersException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ public class IngredientService {
     private final AtomicLong nextId = new AtomicLong();
 
     public Ingredient createIngredient(Ingredient ingredient) {
+        checkIngredient(ingredient);
         long id = nextId.getAndIncrement();
         ingredient.setId(id);
         ingredients.put(id, ingredient);
@@ -32,6 +34,7 @@ public class IngredientService {
         if (!ingredients.containsKey(id)) {
             return null;
         }
+        checkIngredient(ingredient);
         Ingredient original = ingredients.get(id);
         if(ingredient.getCategory() != null)original.setCategory(ingredient.getCategory());
         if(ingredient.getName() != null)original.setName((ingredient.getName()));
@@ -44,6 +47,7 @@ public class IngredientService {
         if (!ingredients.containsKey(id)) {
             return null;
         }
+        checkIngredient(ingredient);
         ingredient.setId(id);
         ingredients.put(id, ingredient);
         return ingredient;
@@ -51,5 +55,14 @@ public class IngredientService {
 
     public boolean removeIngredient(Long id) {
         return ingredients.remove(id) != null;
+    }
+
+    private void checkIngredient(Ingredient ingredient){
+        if((ingredient.getCategory() != null && ingredient.getCategory().isEmpty()) ||
+               (ingredient.getName() != null && ingredient.getName().isEmpty())||
+                (ingredient.getOrigin() != null && ingredient.getOrigin().isEmpty()))
+        {
+            throw new MalformedParametersException("Los campos no pueden estar vacios");
+        }
     }
 }

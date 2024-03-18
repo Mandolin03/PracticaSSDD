@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import es.ssdd.PracticaSSDD.service.DishService;
 
+import java.lang.reflect.MalformedParametersException;
 import java.util.Collection;
 
 @RestController
@@ -30,12 +31,21 @@ public class DishRestController {
 
     @PostMapping
     public ResponseEntity<Dish> createDish(@RequestBody Dish dish) {
-        return ResponseEntity.status(201).body(dishService.createDish(dish));
+        try{
+            return ResponseEntity.status(201).body(dishService.createDish(dish));
+        }catch (MalformedParametersException e){
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Dish> editDish(@PathVariable Long id, @RequestBody Dish dish) {
-        Dish editDish = dishService.putDish(id, dish);
+        Dish editDish;
+        try{
+            editDish = dishService.putDish(id, dish);
+        }catch (MalformedParametersException e){
+            return ResponseEntity.badRequest().build();
+        }
         if (editDish == null) {
             return ResponseEntity.notFound().build();
         }
@@ -44,7 +54,13 @@ public class DishRestController {
     
     @PatchMapping("/{id}")
     public ResponseEntity<Void> patchDish(@PathVariable Long id, @RequestBody Dish dish){
-        if(dishService.editDish(id, dish) == null)return ResponseEntity.notFound().build();
+        Dish edited;
+        try{
+            edited = dishService.editDish(id, dish);
+        }catch (MalformedParametersException e){
+            return ResponseEntity.badRequest().build();
+        }
+        if(edited == null)return ResponseEntity.notFound().build();
         return ResponseEntity.ok().build();
     }
 
