@@ -37,8 +37,6 @@ public class Dish {
         this.ingredients = ingredients;
     }
 }
-
-
 /*
 public class Dish {
     private Long id;

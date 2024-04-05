@@ -27,11 +27,11 @@ public class DataLoader implements CommandLineRunner {
         Ingredient pollo = new Ingredient("Pollo");
         ingredientRepository.saveAll(Arrays.asList(tomate, cebolla, pollo));
 
-        Restaurant restaurant = new Restaurant("Restaurante SD");
-        restaurantRepository.save(restaurant);
+        Restaurant restaurante1 = new Restaurant("Restaurante SD");
+        restaurantRepository.save(restaurante1);
 
-        Dish plato1 = new Dish("Pollo con cebolla", "Andaluz", 6.4, restaurant, new HashSet<>(Arrays.asList(cebolla, pollo)));
-        Dish plato2 = new Dish("Tomate frito", "Valenciano", 5.5, restaurant, new HashSet<>(Arrays.asList(tomate, cebolla)));
+        Dish plato1 = new Dish("Pollo con cebolla", "Andaluz", 6.4, restaurante1, new HashSet<>(Arrays.asList(cebolla, pollo)));
+        Dish plato2 = new Dish("Tomate frito", "Valenciano", 5.5, restaurante1, new HashSet<>(Arrays.asList(tomate, cebolla)));
 
         dishRepository.saveAll(Arrays.asList(plato1, plato2));
     }
