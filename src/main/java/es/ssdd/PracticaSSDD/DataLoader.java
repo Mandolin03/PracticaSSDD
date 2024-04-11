@@ -22,18 +22,22 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Ingredient tomate = new Ingredient("Tomate");
+        Ingredient tomate = new Ingredient();
+        tomate.setName("Tomate");
         tomate.setCategory("Fruta");
         tomate.setOrigin("España");
-        Ingredient cebolla = new Ingredient("Cebolla");
+        Ingredient cebolla = new Ingredient();
+        cebolla.setName("Cebolla");
         cebolla.setCategory("Fruta");
         cebolla.setOrigin("Francia");
-        Ingredient pollo = new Ingredient("Pollo");
+        Ingredient pollo = new Ingredient();
+        pollo.setName("Pollo");
         pollo.setCategory("Carne");
         pollo.setOrigin("España");
 
 
-        Restaurant restaurante1 = new Restaurant("Restaurante SD");
+        Restaurant restaurante1 = new Restaurant();
+        restaurante1.setName("Restaurante SD");
 
 
         Dish plato1 = new Dish("Pollo con cebolla", "Andaluz", 6.4, restaurante1, new HashSet<>(Arrays.asList(cebolla, pollo)));
