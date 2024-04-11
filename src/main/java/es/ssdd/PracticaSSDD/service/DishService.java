@@ -1,6 +1,8 @@
 package es.ssdd.PracticaSSDD.service;
 
 import es.ssdd.PracticaSSDD.entities.Dish;
+import es.ssdd.PracticaSSDD.repositories.DishRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.MalformedParametersException;
@@ -11,52 +13,48 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class DishService {
-    private final Map<Long, Dish> dishes = new HashMap<>();
-    private final AtomicLong nextId = new AtomicLong();
+    @Autowired
+    private DishRepository dishRepository;
 
     public Dish createDish(Dish dish) {
         checkDish(dish);
-        long id = nextId.getAndIncrement();
-        dish.setId(id);
-        dishes.put(id, dish);
+        dishRepository.save(dish);
         return dish;
     }
 
     public Dish getDish(Long id) {
-        return dishes.get(id);
+        return dishRepository.getReferenceById(id);
     }
 
     public Collection<Dish> getDishes() {
-        return dishes.values();
+        return dishRepository.findAll();
     }
 
     public Dish editDish(Long id, Dish dish) {
 
-        if (!dishes.containsKey(id)) {
+        if (!dishRepository.existsById(id)) {
             return null;
         }
         checkDish(dish);
-        Dish original = dishes.get(id);
+        Dish original = dishRepository.getReferenceById(id);
         if (dish.getCategory() != null) original.setCategory(dish.getCategory());
         if (dish.getName() != null) original.setName((dish.getName()));
         if (dish.getPrice() != null) original.setPrice((dish.getPrice()));
-        dishes.put(id, original);
-
+        dishRepository.save(original);
         return original;
     }
 
     public Dish putDish(Long id, Dish dish) {
-        if (!dishes.containsKey(id)) {
-            return null;
-        }
+        if (!dishRepository.existsById(id)) return null;
         checkDish(dish);
         dish.setId(id);
-        dishes.put(id, dish);
-        return dish;
+        return dishRepository.save(dish);
     }
 
     public boolean removeDish(Long id) {
-        return dishes.remove(id) != null;
+        if(!dishRepository.existsById(id)) return false;
+        dishRepository.deleteById(id);
+        return true;
     }
 
 
