@@ -51,6 +51,7 @@ public class IngredientService {
     }
 
     public boolean removeIngredient(Long id) {
+        if(!ingredientRepository.existsById(id)) return false;
         ingredientRepository.deleteById(id);
         return true;
     }
