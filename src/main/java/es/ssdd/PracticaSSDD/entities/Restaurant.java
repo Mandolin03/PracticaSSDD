@@ -17,8 +17,4 @@ public class Restaurant {
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Dish> dishes = new HashSet<>();
-
-    public Restaurant(String name) {
-        this.name = name;
-    }
 }
