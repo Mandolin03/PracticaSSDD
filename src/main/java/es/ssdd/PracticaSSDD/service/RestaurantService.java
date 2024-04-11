@@ -1,6 +1,8 @@
 package es.ssdd.PracticaSSDD.service;
 
 import es.ssdd.PracticaSSDD.entities.Restaurant;
+import es.ssdd.PracticaSSDD.repositories.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.MalformedParametersException;
@@ -11,56 +13,55 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class RestaurantService {
-    private final Map<Long, Restaurant> restaurants = new HashMap<>();
-    private final AtomicLong nextId = new AtomicLong();
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
 
     public Restaurant createTable(Restaurant restaurant) {
         checkRestaurant(restaurant);
-        long id = nextId.getAndIncrement();
-        restaurant.setId(id);
-        restaurants.put(id, restaurant);
+        restaurantRepository.save(restaurant);
         return restaurant;
     }
 
     public Restaurant getRestaurant(Long id) {
 
-        return restaurants.get(id);
+        return restaurantRepository.getReferenceById(id);
     }
 
     public Collection<Restaurant> getRestaurants() {
 
-        return restaurants.values();
+        return restaurantRepository.findAll();
     }
 
     public Restaurant editRestaurant(Long id, Restaurant restaurant) {
 
-        if (!restaurants.containsKey(id)) {
+        if (!restaurantRepository.existsById(id)) {
             return null;
         }
         checkRestaurant(restaurant);
-        Restaurant original = restaurants.get(id);
+        Restaurant original = restaurantRepository.getReferenceById(id);
         if(restaurant.getName() != null)original.setName(restaurant.getName());
         if(restaurant.getStyle() != null)original.setStyle(restaurant.getStyle());
         if(restaurant.getQuality() != null)original.setQuality(restaurant.getQuality());
         if(restaurant.getLocation() != null)original.setLocation(restaurant.getLocation());
 
-        restaurants.put(id, original);
+        restaurantRepository.save(original);
         return original;
     }
 
     public Restaurant putRestaurant(Long id, Restaurant restaurant){
-        if (!restaurants.containsKey(id)) {
+        if (!restaurantRepository.existsById(id)) {
             return null;
         }
         checkRestaurant(restaurant);
-        restaurant.setId(id);
-        restaurants.put(id, restaurant);
+        restaurantRepository.save(restaurant);
         return restaurant;
     }
 
     public boolean removeRestaurant(Long id) {
-
-        return restaurants.remove(id) != null;
+        if(!restaurantRepository.existsById(id)) return false;
+        restaurantRepository.deleteById(id);
+        return true;
     }
 
     private void checkRestaurant(Restaurant restaurant){
