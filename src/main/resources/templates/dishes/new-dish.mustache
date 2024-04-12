@@ -16,6 +16,13 @@
     <input type="text" id="category" name="category"><br><br>
     <label for="price">Precio:</label>
     <input type="number" id="price" step="0.01" name="price" min="0"><br><br>
+    <label for="restaurant">Restaurante:</label>
+    <select id="restaurant" name="Restaurantes">
+        <option hidden disabled selected value></option>
+        {{#options}}
+            <option value="{{name}}">{{name}}</option>
+        {{/options}}
+    </select><br><br>
     <div class="button-container">
         <input type="submit" value="Agregar"><br>
         <a href="/dishes" class="cancel">Cancelar</a><br><br>

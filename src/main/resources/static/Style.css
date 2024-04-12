@@ -173,7 +173,8 @@ footer {
 
 .product-form input,
 .product-form a,
-.product-form textarea {
+.product-form textarea,
+.product-form select{
     width: calc(100% - 20px);
     padding: 10px;
     margin: 8px 0;

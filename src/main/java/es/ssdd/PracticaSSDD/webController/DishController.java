@@ -1,6 +1,7 @@
 package es.ssdd.PracticaSSDD.webController;
 
 import es.ssdd.PracticaSSDD.entities.Dish;
+import es.ssdd.PracticaSSDD.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,8 @@ public class DishController {
     }
 
     @GetMapping("/new-dish")
-    public String showFormNewDish() {
+    public String showFormNewDish(Model model) {
+        model.addAttribute("options", restaurantService.getRestaurants());
         return "dishes/new-dish";
     }
 
@@ -47,6 +49,8 @@ public class DishController {
     public String editDishForm(@PathVariable Long id, Model model) {
         if (dishService.getDish(id) != null){
             model.addAttribute("dish", dishService.getDish(id));
+            model.addAttribute("options", restaurantService.getRestaurants());
+            model.addAttribute("selected", "selected");
             return "dishes/edit-dish";
         } else {
             return "redirect:/dishes";

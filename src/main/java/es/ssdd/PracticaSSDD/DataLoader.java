@@ -42,13 +42,19 @@ public class DataLoader implements CommandLineRunner {
         restaurante1.setQuality(10);
         restaurante1.setLocation("Mostoles");
 
+        Restaurant restaurante2 = new Restaurant();
+        restaurante2.setName("Restaurante ElGuacho");
+        restaurante2.setStyle("Mexicano");
+        restaurante2.setQuality(9);
+        restaurante2.setLocation("Alcorcon");
+
 
         Dish plato1 = new Dish("Pollo con cebolla", "Andaluz", 6.4, restaurante1, new HashSet<>(Arrays.asList(cebolla, pollo)));
-        Dish plato2 = new Dish("Tomate frito", "Valenciano", 5.5, restaurante1, new HashSet<>(Arrays.asList(tomate, cebolla)));
+        Dish plato2 = new Dish("Tomate frito", "Valenciano", 5.5, restaurante2, new HashSet<>(Arrays.asList(tomate, cebolla)));
 
         tomate.setDishes(new HashSet<>(List.of(plato2)));
 
-        restaurantRepository.save(restaurante1);
+        restaurantRepository.saveAll(Arrays.asList(restaurante1, restaurante2));
         ingredientRepository.saveAll(Arrays.asList(tomate, cebolla, pollo));
         dishRepository.saveAll(Arrays.asList(plato1, plato2));
     }
