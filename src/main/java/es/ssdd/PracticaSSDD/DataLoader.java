@@ -38,6 +38,9 @@ public class DataLoader implements CommandLineRunner {
 
         Restaurant restaurante1 = new Restaurant();
         restaurante1.setName("Restaurante SD");
+        restaurante1.setStyle("Chino");
+        restaurante1.setQuality(10);
+        restaurante1.setLocation("Mostoles");
 
 
         Dish plato1 = new Dish("Pollo con cebolla", "Andaluz", 6.4, restaurante1, new HashSet<>(Arrays.asList(cebolla, pollo)));

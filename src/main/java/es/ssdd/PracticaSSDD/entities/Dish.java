@@ -41,4 +41,9 @@ public class Dish {
         this.restaurant = restaurant;
         this.ingredients = ingredients;
     }
+
+    public String formattedPrice(){
+        return "%.2f".formatted(price);
+    }
+
 }
