@@ -50,7 +50,6 @@ public class DishController {
         if (dishService.getDish(id) != null){
             model.addAttribute("dish", dishService.getDish(id));
             model.addAttribute("options", restaurantService.getRestaurants());
-            model.addAttribute("selected", "selected");
             return "dishes/edit-dish";
         } else {
             return "redirect:/dishes";
