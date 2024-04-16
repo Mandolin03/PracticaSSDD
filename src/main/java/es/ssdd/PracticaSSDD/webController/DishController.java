@@ -15,6 +15,8 @@ public class DishController {
 
     @Autowired
     private DishService dishService;
+    @Autowired
+    RestaurantService restaurantService;
 
     @GetMapping("/dishes")
     public String listDishes(Model model) {
