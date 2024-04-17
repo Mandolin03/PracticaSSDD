@@ -163,13 +163,14 @@ footer {
 
 /* Forms */
 .product-form {
-    max-width: 400px;
+    max-width: 1000px;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .product-form input,
 .product-form a,
@@ -184,6 +185,7 @@ footer {
 }
 
 .product-form input[type="submit"]{
+    max-width: 100px;
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -196,6 +198,7 @@ footer {
 }
 
 .product-form .cancel{
+    max-width: 100px;
     display: inline-block;
     padding: 10px 20px;
     background-color: red;
@@ -216,6 +219,7 @@ footer {
 }
 
 .product-form label {
+    max-width: 100px;
     font-weight: bold;
 }
 
@@ -354,6 +358,31 @@ input::placeholder {
     transform: translateY(-3px);
 }
 
+
+.select-list ul {
+    list-style-type:none;
+}
+
+.select-list label {
+    border:0px solid #ccc;
+    padding:10px;
+    margin:0 0 10px;
+    display:block;
+}
+
+.select-list label:hover {
+    background:#eee;
+    cursor:pointer;
+}
+
+.select-list li{
+    float: left;
+}
+
+.sub-entry{
+    width: 50%;
+    float:left;
+}
 
 
 

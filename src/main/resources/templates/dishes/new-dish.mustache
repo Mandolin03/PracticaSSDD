@@ -3,31 +3,46 @@
 <head>
     <title>Nuevo plato</title>
     <link rel="stylesheet" type="text/css" href="/Style.css">
-    <script src="/script.js"></script>
+    <script src="script.js"></script>
+    <script></script>
 </head>
 
 <body>
 <h1 class="title">Agrega un nuevo plato a la carta</h1>
     <br>
 <form class="product-form" name="dishForm" action="/new-dish" method="post" onsubmit="return checkDishForm()">
-    <label for="name">Nombre:</label>
-    <input type="text" id="name" name="name" ><br><br>
-    <label for="category">Categoría:</label>
-    <input type="text" id="category" name="category"><br><br>
-    <label for="price">Precio:</label>
-    <input type="number" id="price" step="0.01" name="price" min="0"><br><br>
-    <label for="restaurant">Restaurante:</label>
-    <select id="restaurant" name="Restaurantes">
-        <option hidden disabled selected value></option>
-        {{#options}}
-            <option value="{{name}}">{{name}}</option>
-        {{/options}}
-    </select><br><br>
+    <div class="sub-entry">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" ><br><br>
+        <label for="category">Categoría:</label>
+        <input type="text" id="category" name="category"><br><br>
+        <label for="price">Precio:</label>
+        <input type="number" id="price" step="0.01" name="price" min="0"><br><br>
+        <label for="restaurant">Restaurante:</label>
+        <select id="restaurant" name="Restaurantes">
+            <option hidden disabled selected value></option>
+            {{#options}}
+                <option value="{{name}}">{{name}}</option>
+            {{/options}}
+        </select><br><br>
+    </div>
+    <div class="sub-entry">
+        <label for="ingredients">Ingredientes:</label>
+        <div class="select-list">
+            <input type="text" id="myInput" onkeyup="return searchBarFunction()" placeholder="Search for names.." title="Type in a name">
+            <ul id="ingredientsList">
+                {{#ingredients}}
+                    <li><label for="{{id}}"><input type="checkbox" name="" id="{{id}}" value="{{id}}">{{name}}</label></li>
+
+                {{/ingredients}}
+            </ul><br><br>
+        </div>
+    </div>
+
     <div class="button-container">
         <input type="submit" value="Agregar"><br>
         <a href="/dishes" class="cancel">Cancelar</a><br><br>
     </div>
-
 </form>
 <br>
 

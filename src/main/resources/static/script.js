@@ -1,4 +1,5 @@
 function checkDishForm() {
+    console.log("CHECKING DISH")
     let name = document.forms["dishForm"]["name"];
     let category = document.forms["dishForm"]["category"];
     let price = document.forms["dishForm"]["price"];
@@ -58,4 +59,24 @@ function checkRestaurantForm() {
         return false;
     }
     return true;
+}
+
+function searchBarFunction() {
+    console.log("PROCESANDO DATOS")
+    let input, filter, ul, li, la, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("ingredientsList");
+    li = ul.getElementsByTagName("li");
+
+
+    for (i = 0; i < li.length; i++) {
+        la = li[i].getElementsByTagName("label")[0];
+        txtValue = la.textContent || la.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
 }

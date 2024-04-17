@@ -1,6 +1,8 @@
 package es.ssdd.PracticaSSDD.webController;
 
 import es.ssdd.PracticaSSDD.entities.Dish;
+import es.ssdd.PracticaSSDD.entities.Ingredient;
+import es.ssdd.PracticaSSDD.service.IngredientService;
 import es.ssdd.PracticaSSDD.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,10 @@ public class DishController {
     @Autowired
     private DishService dishService;
     @Autowired
-    RestaurantService restaurantService;
+    private RestaurantService restaurantService;
+
+    @Autowired
+    private IngredientService ingredientService;
 
 
     @GetMapping("/dishes")
@@ -28,6 +33,7 @@ public class DishController {
     @GetMapping("/new-dish")
     public String showFormNewDish(Model model) {
         model.addAttribute("options", restaurantService.getRestaurants());
+        model.addAttribute("ingredients", ingredientService.getIngredients());
         return "dishes/new-dish";
     }
 
