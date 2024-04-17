@@ -18,6 +18,9 @@ public class DishController {
     @Autowired
     RestaurantService restaurantService;
 
+    @Autowired
+    private RestaurantService restaurantService;
+
     @GetMapping("/dishes")
     public String listDishes(Model model) {
         model.addAttribute("dishes", dishService.getDishes());
@@ -39,8 +42,11 @@ public class DishController {
 
     @GetMapping("/dishes/details/{id}")
     public String detailedDish(@PathVariable Long id, Model model) {
-        if (dishService.getDish(id) != null){
-            model.addAttribute("dish", dishService.getDish(id));
+        Dish dish = dishService.getDish(id);
+        if (dish != null){
+
+            model.addAttribute("dish",dish);
+            model.addAttribute("ingredients", dish.getIngredients());
             return "dishes/dish";
         } else {
             return "redirect:/dishes";

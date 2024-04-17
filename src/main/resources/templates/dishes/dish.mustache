@@ -7,12 +7,19 @@
 <body>
 <h1 class="title">Detalles del plato</h1>
 <div class="product-container">
-
     <h3>{{dish.name}}</h3><br><br>
-    <h4>Categoría: </h4><br>
+    <h4>Restaurante: </h4>
+    <p><a href="/restaurant//{{dish.restaurant.id}}">{{dish.restaurant.name}}</a></p>
+    <h4>Categoría: </h4>
     <p>{{dish.category}}</p>
     <h4>Precio: </h4>
     <p>{{dish.price}}&euro;</p>
+    <h4>Ingredientes: </h4>
+    <ul>
+        {{#ingredients}}
+            <li>{{name}}</li>
+        {{/ingredients}}
+    </ul>
 
 
     <div class="button-container">
