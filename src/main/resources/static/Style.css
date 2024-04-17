@@ -163,6 +163,9 @@ footer {
 
 /* Forms */
 .product-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     max-width: 1000px;
     margin: 0 auto;
     background-color: #fff;
@@ -185,7 +188,7 @@ footer {
 }
 
 .product-form input[type="submit"]{
-    max-width: 100px;
+    max-width: 250px;
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -198,7 +201,7 @@ footer {
 }
 
 .product-form .cancel{
-    max-width: 100px;
+    max-width: 250px;
     display: inline-block;
     padding: 10px 20px;
     background-color: red;
@@ -214,6 +217,7 @@ footer {
     background-color: #45a049;
 }
 
+
 .product-form .cancel:hover{
     background-color: darkred;
 }
@@ -223,9 +227,6 @@ footer {
     font-weight: bold;
 }
 
-.product-form .success-message {
-    color: #4CAF50;
-}
 
 /* JavaScript */
 input::placeholder {
@@ -303,9 +304,11 @@ input::placeholder {
 }
 
 .button-container {
+    width: 100%;
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 20px;
+    justify-content: center;
+
 }
 
 .edit, .delete, .back {
@@ -359,29 +362,13 @@ input::placeholder {
 }
 
 
-.select-list ul {
-    list-style-type:none;
-}
 
-.select-list label {
-    border:0px solid #ccc;
-    padding:10px;
-    margin:0 0 10px;
-    display:block;
-}
 
-.select-list label:hover {
-    background:#eee;
-    cursor:pointer;
-}
-
-.select-list li{
-    float: left;
-}
 
 .sub-entry{
-    width: 50%;
-    float:left;
+    flex: 0 0 auto;
+    margin-right: 20px;
+    text-align: center;
 }
 
 

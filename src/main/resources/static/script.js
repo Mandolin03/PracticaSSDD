@@ -1,5 +1,4 @@
 function checkDishForm() {
-    console.log("CHECKING DISH")
     let name = document.forms["dishForm"]["name"];
     let category = document.forms["dishForm"]["category"];
     let price = document.forms["dishForm"]["price"];
@@ -62,21 +61,33 @@ function checkRestaurantForm() {
 }
 
 function searchBarFunction() {
-    console.log("PROCESANDO DATOS")
-    let input, filter, ul, li, la, i, txtValue;
+    let input, filter, li, la, i, txtValue;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("ingredientsList");
-    li = ul.getElementsByTagName("li");
 
-
-    for (i = 0; i < li.length; i++) {
-        la = li[i].getElementsByTagName("label")[0];
-        txtValue = la.textContent || la.innerText;
+    console.log("Procesando elementos check...\n");
+    li = document.getElementsByName("check");
+    console.log(li.length);
+    for(let i = 0; i < li.length; ++i){
+        console.log("PROCESANDO DATO: ");
+        let label = li[i].parentNode.querySelector("label[for='" + li[i].id + "']");
+        let txtValue = label.innerText || label.textContent;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
+            label.style.display = "";
+
         } else {
             li[i].style.display = "none";
+            label.style.display = "none";
         }
     }
+
 }
+
+/*
+ <ul id="ingredientsList">
+   {{#ingredients}}
+      <li><label for="{{id}}"><input type="checkbox" name="" id="{{id}}" value="{{id}}">{{name}}</label></li>
+   {{/ingredients}}
+  </ul
+ */

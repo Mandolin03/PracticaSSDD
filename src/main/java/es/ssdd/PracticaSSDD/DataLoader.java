@@ -34,6 +34,15 @@ public class DataLoader implements CommandLineRunner {
         pollo.setName("Pollo");
         pollo.setCategory("Carne");
         pollo.setOrigin("España");
+        Ingredient carne = new Ingredient();
+        carne.setName("Carne");
+        carne.setCategory("k");
+        carne.setOrigin("España");
+        Ingredient harina = new Ingredient();
+        harina.setName("harina");
+        harina.setCategory("n");
+        harina.setOrigin("España");
+
 
 
         Restaurant restaurante1 = new Restaurant();
@@ -55,7 +64,7 @@ public class DataLoader implements CommandLineRunner {
         tomate.setDishes(new HashSet<>(List.of(plato2)));
 
         restaurantRepository.saveAll(Arrays.asList(restaurante1, restaurante2));
-        ingredientRepository.saveAll(Arrays.asList(tomate, cebolla, pollo));
+        ingredientRepository.saveAll(Arrays.asList(tomate, cebolla, pollo, carne, harina));
         dishRepository.saveAll(Arrays.asList(plato1, plato2));
     }
 }
