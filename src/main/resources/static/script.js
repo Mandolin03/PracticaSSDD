@@ -7,6 +7,9 @@ function checkDishForm() {
         name.setAttribute("placeholder", "Este campo es obligatorio.");
         category.setAttribute("placeholder", "Este campo es obligatorio.");
         price.setAttribute("placeholder", "Este campo es obligatorio.");
+
+
+        document.getElementById("form").attributes.ac
         return false;
     }
     const number = parseFloat(price.value);
@@ -61,33 +64,25 @@ function checkRestaurantForm() {
 }
 
 function searchBarFunction() {
-    let input, filter, li, la, i, txtValue;
+    let input, filter, list;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
 
     console.log("Procesando elementos check...\n");
-    li = document.getElementsByName("check");
-    console.log(li.length);
-    for(let i = 0; i < li.length; ++i){
+    list = document.getElementsByName("check");
+    console.log(list.length);
+    for(let i = 0; i < list.length; ++i){
         console.log("PROCESANDO DATO: ");
-        let label = li[i].parentNode.querySelector("label[for='" + li[i].id + "']");
+        let label = list[i].parentNode.querySelector("label[for='" + list[i].id + "']");
         let txtValue = label.innerText || label.textContent;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
+            list[i].style.display = "";
             label.style.display = "";
 
         } else {
-            li[i].style.display = "none";
+            list[i].style.display = "none";
             label.style.display = "none";
         }
     }
 
 }
-
-/*
- <ul id="ingredientsList">
-   {{#ingredients}}
-      <li><label for="{{id}}"><input type="checkbox" name="" id="{{id}}" value="{{id}}">{{name}}</label></li>
-   {{/ingredients}}
-  </ul
- */

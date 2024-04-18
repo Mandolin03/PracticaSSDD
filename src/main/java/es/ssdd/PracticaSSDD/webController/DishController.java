@@ -1,16 +1,18 @@
 package es.ssdd.PracticaSSDD.webController;
 
+import es.ssdd.PracticaSSDD.entities.DataTransferObject;
 import es.ssdd.PracticaSSDD.entities.Dish;
 import es.ssdd.PracticaSSDD.entities.Ingredient;
+import es.ssdd.PracticaSSDD.entities.Restaurant;
 import es.ssdd.PracticaSSDD.service.IngredientService;
 import es.ssdd.PracticaSSDD.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import es.ssdd.PracticaSSDD.service.DishService;
+
+import java.util.Arrays;
 
 @Controller
 public class DishController {
@@ -38,8 +40,20 @@ public class DishController {
     }
 
     @PostMapping("/new-dish")
-    public String processFormNewDish(Dish dish) {
+    public String processFormNewDish(DataTransferObject dto) {
+        Dish dish = new Dish();
+        dish.setName(dto.getName());
+        dish.setCategory(dto.getCategory());
+        dish.setPrice(dto.getPrice());
+        Restaurant r = restaurantService.getRestaurant(dto.getRestaurant());
+        dish.setRestaurant(r);
+
+        for (Long id : dto.getIngredients()) {
+            Ingredient ingredient = ingredientService.getIngredient(id);
+            dish.addIngredient(ingredient);
+        }
         dishService.createDish(dish);
+
         return "redirect:/dishes";
     }
 
@@ -47,9 +61,8 @@ public class DishController {
     @GetMapping("/dishes/details/{id}")
     public String detailedDish(@PathVariable Long id, Model model) {
         Dish dish = dishService.getDish(id);
-        if (dish != null){
-
-            model.addAttribute("dish",dish);
+        if (dish != null) {
+            model.addAttribute("dish", dish);
             model.addAttribute("ingredients", dish.getIngredients());
             return "dishes/dish";
         } else {
@@ -59,7 +72,7 @@ public class DishController {
 
     @GetMapping("/dishes/edit/{id}")
     public String editDishForm(@PathVariable Long id, Model model) {
-        if (dishService.getDish(id) != null){
+        if (dishService.getDish(id) != null) {
             model.addAttribute("dish", dishService.getDish(id));
             model.addAttribute("options", restaurantService.getRestaurants());
             return "dishes/edit-dish";

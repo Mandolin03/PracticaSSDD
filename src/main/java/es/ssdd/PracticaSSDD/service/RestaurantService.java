@@ -23,9 +23,9 @@ public class RestaurantService {
         return restaurant;
     }
 
-    public Restaurant getRestaurant(Long id) {
 
-        return restaurantRepository.getReferenceById(id);
+    public Restaurant getRestaurant(Long id) {
+        return restaurantRepository.findById(id).orElse(null);
     }
 
     public Collection<Restaurant> getRestaurants() {
@@ -39,7 +39,7 @@ public class RestaurantService {
             return null;
         }
         checkRestaurant(restaurant);
-        Restaurant original = restaurantRepository.getReferenceById(id);
+        Restaurant original = restaurantRepository.findById(id).get();
         if(restaurant.getName() != null)original.setName(restaurant.getName());
         if(restaurant.getStyle() != null)original.setStyle(restaurant.getStyle());
         if(restaurant.getQuality() != null)original.setQuality(restaurant.getQuality());

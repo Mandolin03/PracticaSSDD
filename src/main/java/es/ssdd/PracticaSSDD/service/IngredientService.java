@@ -21,7 +21,7 @@ public class IngredientService {
     }
 
     public Ingredient getIngredient(Long id) {
-        return ingredientRepository.getReferenceById(id);
+        return ingredientRepository.findById(id).orElse(null);
     }
 
     public Collection<Ingredient> getIngredients() {
@@ -33,7 +33,7 @@ public class IngredientService {
             return null;
         }
         checkIngredient(ingredient);
-        Ingredient original = ingredientRepository.getReferenceById(id);
+        Ingredient original = ingredientRepository.findById(id).get();
         if(ingredient.getCategory() != null)original.setCategory(ingredient.getCategory());
         if(ingredient.getName() != null)original.setName((ingredient.getName()));
         if(ingredient.getOrigin() != null)original.setOrigin((ingredient.getOrigin()));

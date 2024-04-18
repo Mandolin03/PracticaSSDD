@@ -46,4 +46,9 @@ public class Dish {
         return "%.2f".formatted(price);
     }
 
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+        ingredient.getDishes().add(this);
+    }
+
 }

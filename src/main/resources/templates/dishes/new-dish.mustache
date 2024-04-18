@@ -20,10 +20,9 @@
         <label for="price">Precio:</label>
         <input type="number" id="price" step="0.01" name="price" min="0"><br><br>
         <label for="restaurant">Restaurante:</label>
-        <select id="restaurant" name="Restaurantes">
-            <option hidden disabled selected value></option>
+        <select id="restaurant" name="restaurant">
             {{#options}}
-                <option value="{{name}}">{{name}}</option>
+                <option value={{id}}>{{name}}</option>
             {{/options}}
         </select><br><br>
     </div>
@@ -31,12 +30,10 @@
         <div class="checkList">
             <label for="ingredients">Ingredientes:</label>
             <input type="text" id="myInput" onkeyup="return searchBarFunction()" placeholder="Buscar ingredientes" title="Type in a name">
-            <ul id="ingredientsList">
-                {{#ingredients}}
-                    <input type="checkbox" name="check" id="{{id}}" value="{{id}}" >
-                    <label for="{{id}}">{{name}}</label>
-                {{/ingredients}}
-            </ul><br><br>
+            {{#ingredients}}
+                <input type="checkbox" name="ingredients" id="{{id}}" value="{{id}}" >
+                <label for="{{id}}">{{name}}</label>
+            {{/ingredients}}<br><br>
         </div>
     </div>
 

@@ -64,6 +64,9 @@ public class DataLoader implements CommandLineRunner {
         tomate.setDishes(new HashSet<>(List.of(plato2)));
 
         restaurantRepository.saveAll(Arrays.asList(restaurante1, restaurante2));
+        for (var i : restaurantRepository.findAll()) {
+            System.out.println("Restaurant with id: " + i.getId());
+        }
         ingredientRepository.saveAll(Arrays.asList(tomate, cebolla, pollo, carne, harina));
         dishRepository.saveAll(Arrays.asList(plato1, plato2));
     }
