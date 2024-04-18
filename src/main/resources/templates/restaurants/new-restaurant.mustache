@@ -18,6 +18,16 @@
     <input type="number" id="quality" name="quality" min="0" max="10"><br><br>
     <label for="location">Ubicación:</label>
     <input type="text" id="location" name="location"><br><br>
+    <div class="sub-entry">
+        <div class="checkList">
+            <label for="dishes">Platos:</label>
+            <input type="text" id="myInput" onkeyup="return searchBarFunction()" placeholder="Buscar platos" title="Type in a name">
+            {{#dishes}}
+                <input type="checkbox" name="dishes" id="{{id}}" value="{{id}}" >
+                <label for="{{id}}">{{name}}</label>
+            {{/dishes}}<br><br>
+        </div>
+    </div>
     <div class="button-container">
     <input type="submit" value="Agregar"><br>
     <a href="/restaurants" class="cancel">Cancelar</a><br><br>
