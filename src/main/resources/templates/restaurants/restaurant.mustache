@@ -22,19 +22,18 @@
     <p>{{restaurant.location}}</p>
     </div>
     <div class="table-atr">
-    <h4>Platos disponibles: </h4>
+    <h4>Carta: </h4>
     <ul>
         {{#dishes}}
             <li>{{name}}</li>
         {{/dishes}}
     </ul>
     </div>
-
     <div class="button-container">
         <a href="/restaurants/edit/{{restaurant.id}}" class="edit">Editar</a>
         <a href="/restaurants/delete/{{restaurant.id}}" class="delete" onclick="return confirm('¿Estás seguro de querer eliminar este restaurante?')">Borrar</a>
     </div>
-</div><br>
+</div>
 <div class="button-container">
     <a href="/restaurants" class="back">Volver</a><br>
 </div>

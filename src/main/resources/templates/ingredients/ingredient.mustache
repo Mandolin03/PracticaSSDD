@@ -14,6 +14,12 @@
     <p>{{ingredient.category}}</p>
     <h4>Origen: </h4><br>
     <p>{{ingredient.origin}}</p>
+    <h4>Platos que lo contienen: </h4>
+    <ul>
+        {{#dishes}}
+            <li>{{name}}</li>
+        {{/dishes}}
+    </ul>
 
     <div class="button-container">
         <a href="/ingredients/edit/{{ingredient.id}}" class="edit">Editar</a>

@@ -1,7 +1,7 @@
 package es.ssdd.PracticaSSDD.webController;
 
-import es.ssdd.PracticaSSDD.entities.DataTransferObject;
 import es.ssdd.PracticaSSDD.entities.Dish;
+import es.ssdd.PracticaSSDD.entities.DishDataTransferObject;
 import es.ssdd.PracticaSSDD.entities.Ingredient;
 import es.ssdd.PracticaSSDD.entities.Restaurant;
 import es.ssdd.PracticaSSDD.service.IngredientService;
@@ -40,7 +40,7 @@ public class DishController {
     }
 
     @PostMapping("/new-dish")
-    public String processFormNewDish(DataTransferObject dto) {
+    public String processFormNewDish(DishDataTransferObject dto) {
         Dish dish = new Dish();
         dish.setName(dto.getName());
         dish.setCategory(dto.getCategory());

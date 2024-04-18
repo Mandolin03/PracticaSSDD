@@ -1,6 +1,8 @@
 package es.ssdd.PracticaSSDD.webController;
 
+import es.ssdd.PracticaSSDD.entities.Dish;
 import es.ssdd.PracticaSSDD.entities.Restaurant;
+import es.ssdd.PracticaSSDD.service.DishService;
 import es.ssdd.PracticaSSDD.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
+    @Autowired
+    private DishService dishService;
 
     @GetMapping("/restaurants")
     public String getRestaurants(Model model) {
@@ -34,8 +38,10 @@ public class RestaurantController {
 
     @GetMapping("/restaurants/details/{id}")
     public String detailedRestaurant(@PathVariable Long id, Model model) {
-        if (restaurantService.getRestaurant(id) != null) {
-            model.addAttribute("restaurant", restaurantService.getRestaurant(id));
+        Restaurant restaurant = restaurantService.getRestaurant(id);
+        if (restaurant != null) {
+            model.addAttribute("restaurant", restaurant);
+            model.addAttribute("dishes", restaurant.getDishes());
             return "restaurants/restaurant";
         } else {
             return "redirect:/restaurants";
@@ -47,6 +53,7 @@ public class RestaurantController {
     public String editRestaurantForm(@PathVariable Long id, Model model) {
         if (restaurantService.getRestaurant(id) != null) {
             model.addAttribute("restaurant", restaurantService.getRestaurant(id));
+            model.addAttribute("options", dishService.getDishes());
             return "restaurants/edit-restaurant";
         } else {
             return "redirect:/restaurants";

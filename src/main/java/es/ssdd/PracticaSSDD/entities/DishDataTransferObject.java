@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DataTransferObject {
+public class DishDataTransferObject {
 private Long id;
     private String name;
     private String category;
@@ -13,11 +13,11 @@ private Long id;
     private Long restaurant;
     private Long[] ingredients;
 
-    public DataTransferObject() {
+    public DishDataTransferObject() {
         System.out.println("DTO created");
     }
 
-    public DataTransferObject(Long id, String name, String category, Double price, Long restaurant, Long[] ingredients) {
+    public DishDataTransferObject(Long id, String name, String category, Double price, Long restaurant, Long[] ingredients) {
         this.id = id;
         this.name = name;
         this.category = category;

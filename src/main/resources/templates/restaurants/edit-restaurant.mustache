@@ -19,13 +19,6 @@
     <input type="number" id="quality" name="quality" value="{{restaurant.quality}}" min="0" max="10><br><br>
     <label for="location">Ubicación:</label>
     <input type="text" id="location" name="location" value="{{restaurant.location}}"><br><br>
-    <label for="dish">Platos disponibles:</label>
-    <select id="dish" name="Platos" >
-        <option hidden disabled selected value></option>
-        {{#options}}
-            <option value="{{name}}">{{name}}</option>
-        {{/options}}
-    </select><br><br>
     <div class="button-container">
         <input type="submit" value="Editar">
         <a href="/restaurants" class="cancel">Cancelar</a><br><br>
