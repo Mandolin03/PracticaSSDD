@@ -40,6 +40,8 @@ public class DishService {
         if (dish.getCategory() != null) original.setCategory(dish.getCategory());
         if (dish.getName() != null) original.setName((dish.getName()));
         if (dish.getPrice() != null) original.setPrice((dish.getPrice()));
+        original.setRestaurant(dish.getRestaurant());
+        original.setIngredients(dish.getIngredients());
         dishRepository.save(original);
         return original;
     }

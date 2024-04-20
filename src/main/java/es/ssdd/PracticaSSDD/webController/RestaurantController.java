@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 
 @Controller
 public class RestaurantController {
@@ -26,7 +30,15 @@ public class RestaurantController {
     }
 
     @GetMapping("/new-restaurant")
-    public String showFormNewRestaurant() {
+    public String showFormNewRestaurant(Model model) {
+        Collection<Dish> dishes = dishService.getDishes();
+        List<Dish> emptyDishes = new ArrayList<>();
+        for(Dish d : dishes){
+            if(d.getRestaurant() == null){
+                emptyDishes.add(d);
+            }
+        }
+        model.addAttribute("dishes", emptyDishes);
         return "restaurants/new-restaurant";
     }
 

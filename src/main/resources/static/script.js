@@ -2,14 +2,20 @@ function checkDishForm() {
     let name = document.forms["dishForm"]["name"];
     let category = document.forms["dishForm"]["category"];
     let price = document.forms["dishForm"]["price"];
+    let checklist = document.getElementsByName("ingredients");
+    let count = 0;
+    for(let i = 0; i < checklist.length; ++i){
+        if(checklist[i].checked)count++;
+    }
+    if(count === 0){
+        alert("Debes seleccionar al menos un ingrediente.");
+        return false;
+    }
     if (name.value === "" || category.value === "" || price.value === "") {
         alert("Todos los campos son obligatorios.");
         name.setAttribute("placeholder", "Este campo es obligatorio.");
         category.setAttribute("placeholder", "Este campo es obligatorio.");
         price.setAttribute("placeholder", "Este campo es obligatorio.");
-
-
-        document.getElementById("form").attributes.ac
         return false;
     }
     const number = parseFloat(price.value);
@@ -68,11 +74,8 @@ function searchBarFunction() {
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
 
-    console.log("Procesando elementos check...\n");
-    list = document.getElementsByName("check");
-    console.log(list.length);
+    list = document.getElementsByName("ingredients");
     for(let i = 0; i < list.length; ++i){
-        console.log("PROCESANDO DATO: ");
         let label = list[i].parentNode.querySelector("label[for='" + list[i].id + "']");
         let txtValue = label.innerText || label.textContent;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {

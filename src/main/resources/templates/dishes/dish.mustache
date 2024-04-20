@@ -9,7 +9,12 @@
 <div class="product-container">
     <h3>{{dish.name}}</h3><br><br>
     <h4>Restaurante: </h4>
-    <p><a href="/restaurants/details/{{dish.restaurant.id}}">{{dish.restaurant.name}}</a></p>
+    {{#dish.restaurant}}
+        <p><a href="/restaurants/details/{{dish.restaurant.id}}">{{dish.restaurant.name}}</a></p>
+    {{/dish.restaurant}}
+    {{^dish.restaurant}}
+        <p>Sin restaurante asociado</p>
+    {{/dish.restaurant}}
     <h4>Categoría: </h4>
     <p>{{dish.category}}</p>
     <h4>Precio: </h4>

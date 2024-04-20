@@ -7,12 +7,13 @@ import es.ssdd.PracticaSSDD.entities.Restaurant;
 import es.ssdd.PracticaSSDD.service.IngredientService;
 import es.ssdd.PracticaSSDD.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import es.ssdd.PracticaSSDD.service.DishService;
 
-import java.util.Arrays;
+import java.util.*;
 
 @Controller
 public class DishController {
@@ -24,6 +25,8 @@ public class DishController {
 
     @Autowired
     private IngredientService ingredientService;
+    @Autowired
+    private DataSourceTransactionManagerAutoConfiguration dataSourceTransactionManagerAutoConfiguration;
 
 
     @GetMapping("/dishes")
@@ -45,8 +48,11 @@ public class DishController {
         dish.setName(dto.getName());
         dish.setCategory(dto.getCategory());
         dish.setPrice(dto.getPrice());
-        Restaurant r = restaurantService.getRestaurant(dto.getRestaurant());
-        dish.setRestaurant(r);
+        if(dto.getRestaurant() == -1) dish.setRestaurant(null);
+        else{
+            Restaurant r = restaurantService.getRestaurant(dto.getRestaurant());
+            dish.setRestaurant(r);
+        }
 
         for (Long id : dto.getIngredients()) {
             Ingredient ingredient = ingredientService.getIngredient(id);
@@ -72,9 +78,16 @@ public class DishController {
 
     @GetMapping("/dishes/edit/{id}")
     public String editDishForm(@PathVariable Long id, Model model) {
-        if (dishService.getDish(id) != null) {
-            model.addAttribute("dish", dishService.getDish(id));
-            model.addAttribute("options", restaurantService.getRestaurants());
+        Dish dish = dishService.getDish(id);
+        if (dish != null) {
+            model.addAttribute("dish", dish);
+            List<Restaurant> restaurants = new ArrayList<>(restaurantService.getRestaurants());
+            restaurants.remove(dish.getRestaurant());
+            model.addAttribute("options", restaurants);
+            List<Ingredient> noSelectedIngredients = new ArrayList<>(ingredientService.getIngredients());
+            noSelectedIngredients.removeAll(dish.getIngredients());
+            model.addAttribute("selected", dish.getIngredients());
+            model.addAttribute("noSelected", noSelectedIngredients);
             return "dishes/edit-dish";
         } else {
             return "redirect:/dishes";
@@ -82,8 +95,26 @@ public class DishController {
     }
 
     @PostMapping("/dishes/edit/{id}")
-    public String editDish(Dish dish) {
-        dishService.editDish(dish.getId(), dish);
+    public String editDish(DishDataTransferObject dto, @PathVariable Long id) {
+        Dish dish = new Dish();
+        dish.setId(id);
+
+        dish.setName(dto.getName());
+        dish.setCategory(dto.getCategory());
+        dish.setPrice(dto.getPrice());
+        System.out.println("Restaurant: " + dto.getRestaurant());
+        if(dto.getRestaurant() == -1){
+            dish.setRestaurant(null);
+        } else{
+            Restaurant r = restaurantService.getRestaurant(dto.getRestaurant());
+            dish.setRestaurant(r);
+        }
+        for (Long ingId : dto.getIngredients()) {
+            Ingredient ingredient = ingredientService.getIngredient(ingId);
+            dish.addIngredient(ingredient);
+        }
+
+        dishService.editDish(id, dish);
         return "redirect:/dishes";
     }
 

@@ -3,27 +3,45 @@
 <head>
     <title>Editar plato</title>
    <link rel="stylesheet" type="text/css" href="/Style.css">
+   <link rel="stylesheet" type="text/css" href="/checkboxStyle.css">
     <script src="/script.js"></script>
 </head>
 <body>
 <h1 class="title">Edita el plato</h1>
 <br>
 <form class="product-form" name="dishForm" action="/dishes/edit/{{dish.id}}" method="post" onsubmit="return checkDishForm()">
-    <label for="name">Nombre:</label>
-    <input type="text" id="name" name="name" value="{{dish.name}}"><br><br>
-    <label for="category">Categoría:</label>
-    <input type="text" id="category" name="category" value="{{dish.category}}"><br><br>
-    <label for="price">Precio:</label>
-    <input id="price" name="price" step="0.01" value="{{dish.price}}" min="0"><br><br>
-    <label for="restaurant">Restaurante:</label>
-    <select id="restaurant" name="Restaurantes" >
-        <option hidden disabled selected value></option>
-        {{#options}}
-            <option value="{{name}}">{{name}}</option>
-        {{/options}}
-    </select><br><br>
+    <div class="sub-entry">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" value="{{dish.name}}"><br><br>
+        <label for="category">Categoría:</label>
+        <input type="text" id="category" name="category" value="{{dish.category}}"><br><br>
+        <label for="price">Precio:</label>
+        <input id="price" name="price" step="0.01" value="{{dish.price}}" min="0"><br><br>
+        <label for="restaurant">Restaurante:</label>
+        <select id="restaurant" name="restaurant" >
+            <option value=-1>Sin restaurante</option>
+            <option value="{{dish.restaurant.id}}" selected>{{dish.restaurant.name}}</option>
+            {{#options}}
+                <option value="{{id}}">{{name}}</option>
+            {{/options}}
+        </select><br><br>
+    </div>
+    <div class="sub-entry">
+        <div class="checkList">
+            <label for="ingredients">Ingredientes:</label>
+            <input type="text" id="myInput" onkeyup="return searchBarFunction()" placeholder="Buscar ingredientes" title="Type in a name">
+            {{#selected}}
+                <input type="checkbox" name="ingredients" id="{{id}}" value="{{id}}"  checked>
+                <label for="{{id}}" style="text-align: left">{{name}}</label>
+            {{/selected}}
+            {{#noSelected}}
+                <input type="checkbox" name="ingredients" id="{{id}}" value="{{id}}">
+                <label for="{{id}}" style="text-align: left">{{name}}</label>
+            {{/noSelected}}
+        </div>
+    </div>
     <div class="button-container">
-        <input type="submit" value="Editar">
+        <input type="submit" value="Editar"><br>
         <a href="/dishes" class="cancel">Cancelar</a><br><br>
     </div>
 </form>
