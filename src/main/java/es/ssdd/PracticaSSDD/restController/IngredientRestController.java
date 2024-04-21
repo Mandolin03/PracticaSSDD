@@ -1,6 +1,9 @@
 package es.ssdd.PracticaSSDD.restController;
 
+import es.ssdd.PracticaSSDD.entities.Dish;
 import es.ssdd.PracticaSSDD.entities.Ingredient;
+import es.ssdd.PracticaSSDD.repositories.DishRepository;
+import es.ssdd.PracticaSSDD.repositories.IngredientRepository;
 import es.ssdd.PracticaSSDD.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +17,13 @@ import java.util.Collection;
 public class IngredientRestController {
     @Autowired
     private IngredientService ingredientService;
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     @GetMapping
     public ResponseEntity<Collection<Ingredient>> getIngredients() {
-        return ResponseEntity.ok(ingredientService.getIngredients());
+        Collection<Ingredient> ingredients = ingredientRepository.findAll();
+        return ResponseEntity.ok(ingredients);
     }
 
     @GetMapping("/{id}")

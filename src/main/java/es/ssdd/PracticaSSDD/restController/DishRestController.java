@@ -1,25 +1,37 @@
 package es.ssdd.PracticaSSDD.restController;
 
 import es.ssdd.PracticaSSDD.entities.Dish;
+import es.ssdd.PracticaSSDD.repositories.DishRepository;
+import es.ssdd.PracticaSSDD.service.IngredientService;
+import es.ssdd.PracticaSSDD.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import es.ssdd.PracticaSSDD.service.DishService;
 
 import java.lang.reflect.MalformedParametersException;
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/dishes")
 public class DishRestController {
     @Autowired
     private DishService dishService;
+    @Autowired
+    private DataSourceTransactionManagerAutoConfiguration dataSourceTransactionManagerAutoConfiguration;
+
+    @Autowired
+    private DishRepository dishRepository;
 
     @GetMapping
     public ResponseEntity<Collection<Dish>> obtainAllDishes() {
-        return ResponseEntity.ok(dishService.getDishes());
+        Collection<Dish> dishes = dishRepository.findAll();
+        return ResponseEntity.ok(dishes);
     }
 
+    /* ANTERIOR
     @GetMapping("/{id}")
     public ResponseEntity<Dish> obtainDish(@PathVariable Long id) {
         Dish dish = dishService.getDish(id);
@@ -27,6 +39,18 @@ public class DishRestController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(dish);
+    } */
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Dish> obtainDish(@PathVariable Long id) {
+        Optional<Dish> optionalDish = dishRepository.findById(id);
+        if (optionalDish.isPresent()) {
+            Dish dish = optionalDish.get();
+            dish.getIngredients().size();
+            return ResponseEntity.ok(dish);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping

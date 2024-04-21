@@ -1,5 +1,6 @@
 package es.ssdd.PracticaSSDD.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class Ingredient {
     private String category;
     private String origin;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "ingredients")
     private Set<Dish> dishes = new HashSet<>();
 }
