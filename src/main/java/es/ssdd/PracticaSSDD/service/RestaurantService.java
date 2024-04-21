@@ -1,15 +1,13 @@
 package es.ssdd.PracticaSSDD.service;
 
+import es.ssdd.PracticaSSDD.entities.Dish;
 import es.ssdd.PracticaSSDD.entities.Restaurant;
 import es.ssdd.PracticaSSDD.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.MalformedParametersException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.*;
 
 @Service
 public class RestaurantService {
@@ -29,21 +27,26 @@ public class RestaurantService {
     }
 
     public Collection<Restaurant> getRestaurants() {
-
         return restaurantRepository.findAll();
     }
 
     public Restaurant editRestaurant(Long id, Restaurant restaurant) {
-
         if (!restaurantRepository.existsById(id)) {
             return null;
         }
         checkRestaurant(restaurant);
-        Restaurant original = restaurantRepository.findById(id).get();
+        Restaurant original = restaurantRepository.getReferenceById(id);
         if(restaurant.getName() != null)original.setName(restaurant.getName());
         if(restaurant.getStyle() != null)original.setStyle(restaurant.getStyle());
         if(restaurant.getQuality() != null)original.setQuality(restaurant.getQuality());
         if(restaurant.getLocation() != null)original.setLocation(restaurant.getLocation());
+        if(restaurant.getDishes() != null){
+            original.setDishes(restaurant.getDishes());
+        } else{
+            Set<Dish> dishes = new HashSet<>();
+            original.setDishes(dishes);
+        }
+
 
         restaurantRepository.save(original);
         return original;
@@ -54,6 +57,7 @@ public class RestaurantService {
             return null;
         }
         checkRestaurant(restaurant);
+        restaurant.setId(id);
         restaurantRepository.save(restaurant);
         return restaurant;
     }

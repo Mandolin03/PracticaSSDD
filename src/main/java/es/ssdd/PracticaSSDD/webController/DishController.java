@@ -102,13 +102,14 @@ public class DishController {
         dish.setName(dto.getName());
         dish.setCategory(dto.getCategory());
         dish.setPrice(dto.getPrice());
-        System.out.println("Restaurant: " + dto.getRestaurant());
+
         if(dto.getRestaurant() == -1){
             dish.setRestaurant(null);
         } else{
             Restaurant r = restaurantService.getRestaurant(dto.getRestaurant());
             dish.setRestaurant(r);
         }
+        dish.setIngredients(new HashSet<>());
         for (Long ingId : dto.getIngredients()) {
             Ingredient ingredient = ingredientService.getIngredient(ingId);
             dish.addIngredient(ingredient);

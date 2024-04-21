@@ -9,15 +9,14 @@ public class RestaurantDataTransferObject {
     private Long id;
     private String name;
     private String style;
-    private Double quality;
+    private Integer quality;
     private String location;
     private Long[] dishes;
 
     public RestaurantDataTransferObject() {
-        System.out.println("DTO created");
     }
 
-    public RestaurantDataTransferObject(Long id, String name, String style, Double quality, String location, Long[] dishes) {
+    public RestaurantDataTransferObject(Long id, String name, String style, Integer quality, String location, Long[] dishes) {
         this.id = id;
         this.name = name;
         this.style = style;

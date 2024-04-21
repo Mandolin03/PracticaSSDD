@@ -3,6 +3,7 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="/Style.css">
+    <link rel="stylesheet" type="text/css" href="/checkboxStyle.css">
     <script src="/script.js"></script>
 
 </head>
@@ -11,16 +12,33 @@
 <h1 class="title">Edita el restaurante</h1>
 
 <form class="product-form" name="restaurantForm" action="/restaurants/edit/{{restaurant.id}}" method="post" onsubmit="return checkRestaurantForm()">
-    <label for="name">Nombre:</label>
-    <input type="text" id="name" name="name" value="{{restaurant.name}}"><br><br>
-    <label for="style">Estilo:</label>
-    <input type="text" id="style" name="style" value="{{restaurant.style}}"><br><br>
-    <label for="quality">Calidad:</label>
-    <input type="number" id="quality" name="quality" value="{{restaurant.quality}}" min="0" max="10><br><br>
-    <label for="location">Ubicación:</label>
-    <input type="text" id="location" name="location" value="{{restaurant.location}}"><br><br>
+    <div class="sub-entry">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" value="{{restaurant.name}}"><br><br>
+        <label for="style">Estilo:</label>
+        <input type="text" id="style" name="style" value="{{restaurant.style}}"><br><br>
+        <label for="quality">Calidad:</label>
+        <input type="number" id="quality" name="quality" value="{{restaurant.quality}}" min="0" max="10"><br><br>
+        <label for="location">Ubicación:</label>
+        <input type="text" id="location" name="location" value="{{restaurant.location}}"><br><br>
+    </div>
+    <div class="sub-entry">
+        <div class="checkList">
+            <label for="dishes">Platos:</label>
+            <input type="text" id="myInput" onkeyup="return searchBarFunction()" placeholder="Buscar platos" title="Type in a name">
+            {{#selected}}
+                <input type="checkbox" name="dishes" id="{{id}}" value="{{id}}"  checked>
+                <label for="{{id}}" style="text-align: left">{{name}}</label>
+            {{/selected}}
+            {{#noSelected}}
+                <input type="checkbox" name="dishes" id="{{id}}" value="{{id}}">
+                <label for="{{id}}" style="text-align: left">{{name}}</label>
+            {{/noSelected}}
+        </div>
+    </div>
+
     <div class="button-container">
-        <input type="submit" value="Editar">
+        <input type="submit" value="Editar"><br>
         <a href="/restaurants" class="cancel">Cancelar</a><br><br>
     </div>
 

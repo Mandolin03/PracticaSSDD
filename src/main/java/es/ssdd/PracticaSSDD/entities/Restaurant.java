@@ -21,4 +21,10 @@ public class Restaurant {
     public Restaurant(String name){
         this.name = name;
     }
+
+    public void addDish(Dish dish) {
+        dishes.add(dish);
+        dish.setRestaurant(this);
+    }
+
 }

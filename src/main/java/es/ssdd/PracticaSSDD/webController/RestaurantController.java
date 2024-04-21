@@ -1,7 +1,9 @@
 package es.ssdd.PracticaSSDD.webController;
 
 import es.ssdd.PracticaSSDD.entities.Dish;
+import es.ssdd.PracticaSSDD.entities.Ingredient;
 import es.ssdd.PracticaSSDD.entities.Restaurant;
+import es.ssdd.PracticaSSDD.entities.RestaurantDataTransferObject;
 import es.ssdd.PracticaSSDD.service.DishService;
 import es.ssdd.PracticaSSDD.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -63,18 +63,45 @@ public class RestaurantController {
 
     @GetMapping("/restaurants/edit/{id}")
     public String editRestaurantForm(@PathVariable Long id, Model model) {
-        if (restaurantService.getRestaurant(id) != null) {
-            model.addAttribute("restaurant", restaurantService.getRestaurant(id));
-            model.addAttribute("options", dishService.getDishes());
-            return "restaurants/edit-restaurant";
-        } else {
-            return "redirect:/restaurants";
-        }
+        Restaurant restaurant = restaurantService.getRestaurant(id);
+        if (restaurant != null) {
+            model.addAttribute("restaurant", restaurant);
 
+            List<Dish> noSelectedDishes = new ArrayList<>(dishService.getDishes());
+
+            noSelectedDishes.removeIf(d -> d.getRestaurant() != null);
+
+            model.addAttribute("selected", restaurant.getDishes());
+            model.addAttribute("noSelected", noSelectedDishes);
+            return "restaurants/edit-restaurant";
+        }
+        else return "redirect:/restaurants";
     }
 
     @PostMapping("/restaurants/edit/{id}")
-    public String editRestaurant(Restaurant restaurant) {
+    public String editRestaurant(RestaurantDataTransferObject dto, @PathVariable Long id) {
+        Restaurant restaurant = new Restaurant();
+        restaurant.setId(id);
+        restaurant.setName(dto.getName());
+        restaurant.setStyle(dto.getStyle());
+        restaurant.setQuality(dto.getQuality());
+        restaurant.setLocation(dto.getLocation());
+        restaurant.setDishes(new HashSet<>());
+        if(dto.getDishes() != null){
+            for (Long dishId : dto.getDishes()) {
+                Dish dish = dishService.getDish(dishId);
+                restaurant.addDish(dish);
+            }
+        }
+        Collection<Dish> dishes = dishService.getDishes();
+        dishes.removeAll(restaurant.getDishes());
+        for (Dish d : dishes){
+            if (d.getRestaurant() != null && d.getRestaurant().getId() == id){
+                d.setRestaurant(null);
+                dishService.editDish(d.getId(), d);
+            }
+        }
+
         restaurantService.editRestaurant(restaurant.getId(), restaurant);
         return "redirect:/restaurants";
     }

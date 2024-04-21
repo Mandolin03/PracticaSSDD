@@ -24,6 +24,9 @@
     <div class="table-atr">
     <h4>Carta: </h4>
     <ul>
+        {{^dishes}}
+            <p>Sin platos de momento</p>
+        {{/dishes}}
         {{#dishes}}
             <li>{{name}}</li>
         {{/dishes}}
