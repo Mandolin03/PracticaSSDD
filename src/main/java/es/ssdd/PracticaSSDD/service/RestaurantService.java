@@ -15,7 +15,7 @@ public class RestaurantService {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
-    public Restaurant createTable(Restaurant restaurant) {
+    public Restaurant createRestaurant(Restaurant restaurant) {
         checkRestaurant(restaurant);
         restaurantRepository.save(restaurant);
         return restaurant;

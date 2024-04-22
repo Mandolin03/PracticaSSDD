@@ -43,7 +43,7 @@ public class RestaurantController {
 
     @PostMapping("/new-restaurant")
     public String processFormNewRestaurant(Restaurant restaurant) {
-        restaurantService.createTable(restaurant);
+        restaurantService.createRestaurant(restaurant);
         return "redirect:/restaurants";
     }
 
