@@ -1,9 +1,8 @@
 package es.ssdd.PracticaSSDD.webController;
 
 import es.ssdd.PracticaSSDD.entities.Dish;
-import es.ssdd.PracticaSSDD.entities.Ingredient;
 import es.ssdd.PracticaSSDD.entities.Restaurant;
-import es.ssdd.PracticaSSDD.entities.RestaurantDataTransferObject;
+import es.ssdd.PracticaSSDD.entities.RestaurantDTO;
 import es.ssdd.PracticaSSDD.service.DishService;
 import es.ssdd.PracticaSSDD.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +78,7 @@ public class RestaurantController {
     }
 
     @PostMapping("/restaurants/edit/{id}")
-    public String editRestaurant(RestaurantDataTransferObject dto, @PathVariable Long id) {
+    public String editRestaurant(RestaurantDTO dto, @PathVariable Long id) {
         Restaurant restaurant = new Restaurant();
         restaurant.setId(id);
         restaurant.setName(dto.getName());
