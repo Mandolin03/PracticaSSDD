@@ -1,6 +1,5 @@
 package es.ssdd.PracticaSSDD.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,9 +20,16 @@ public class Ingredient {
     private String category;
     private String origin;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "ingredients")
+    @ManyToMany(mappedBy = "ingredients", cascade=CascadeType.REMOVE)
     private Set<Dish> dishes = new HashSet<>();
+
+
+    public void removeDish(Dish dish){
+        Set<Dish> dishesCopy = new HashSet<>(dishes);
+        dishesCopy.remove(dish);
+        dish.getIngredients().remove(this);
+        setDishes(dishesCopy);
+    }
 }
 
 

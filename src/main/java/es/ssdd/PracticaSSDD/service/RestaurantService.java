@@ -64,6 +64,9 @@ public class RestaurantService {
 
     public boolean removeRestaurant(Long id) {
         if(!restaurantRepository.existsById(id)) return false;
+        for(Dish dish : restaurantRepository.findById(id).get().getDishes()){
+            dish.setRestaurant(null);
+        }
         restaurantRepository.deleteById(id);
         return true;
     }

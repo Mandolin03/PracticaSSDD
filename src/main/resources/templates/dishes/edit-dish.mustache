@@ -20,7 +20,9 @@
         <label for="restaurant">Restaurante:</label>
         <select id="restaurant" name="restaurant" >
             <option value=-1>Sin restaurante</option>
-            <option value="{{dish.restaurant.id}}" selected>{{dish.restaurant.name}}</option>
+            {{#dish.restaurant}}
+                <option value="{{dish.restaurant.id}}" selected>{{dish.restaurant.name}}</option>
+            {{/dish.restaurant}}
             {{#options}}
                 <option value="{{id}}">{{name}}</option>
             {{/options}}

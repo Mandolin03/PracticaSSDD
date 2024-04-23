@@ -1,6 +1,5 @@
 package es.ssdd.PracticaSSDD.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.util.HashSet;
@@ -23,13 +22,11 @@ public class Dish {
     private String category;
     private Double price;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @JsonIgnore
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.MERGE})
+    @ManyToMany(cascade=CascadeType.REMOVE)
     @JoinTable(
             name = "dish_ingredient",
             joinColumns = @JoinColumn(name = "dish_id"),
@@ -52,6 +49,13 @@ public class Dish {
     public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
         ingredient.getDishes().add(this);
+    }
+
+    public void removeIngredient(Ingredient i){
+        Set<Ingredient> ingredientsCopy = new HashSet<>(getIngredients());
+        ingredientsCopy.remove(i);
+        i.getDishes().remove(this);
+        setIngredients(ingredientsCopy);
     }
 
 }

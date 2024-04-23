@@ -1,5 +1,6 @@
 package es.ssdd.PracticaSSDD.service;
 
+import es.ssdd.PracticaSSDD.entities.Dish;
 import es.ssdd.PracticaSSDD.entities.Ingredient;
 import es.ssdd.PracticaSSDD.repositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.MalformedParametersException;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Service
 public class IngredientService {
@@ -52,6 +54,11 @@ public class IngredientService {
 
     public boolean removeIngredient(Long id) {
         if(!ingredientRepository.existsById(id)) return false;
+        Ingredient i = ingredientRepository.findById(id).get();
+        var dishes = new HashSet<>(i.getDishes());
+        for(Dish d : dishes){
+            d.removeIngredient(i);
+        }
         ingredientRepository.deleteById(id);
         return true;
     }

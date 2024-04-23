@@ -1,5 +1,4 @@
 package es.ssdd.PracticaSSDD.entities;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.HashSet;
@@ -16,8 +15,7 @@ public class Restaurant {
     private Integer quality;
     private String location;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
     private Set<Dish> dishes = new HashSet<>();
 
     public Restaurant(String name){
