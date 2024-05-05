@@ -36,15 +36,15 @@ public class IngredientService {
         }
         checkIngredient(ingredient);
         Ingredient original = ingredientRepository.findById(id).get();
-        if(ingredient.getCategory() != null)original.setCategory(ingredient.getCategory());
-        if(ingredient.getName() != null)original.setName((ingredient.getName()));
-        if(ingredient.getOrigin() != null)original.setOrigin((ingredient.getOrigin()));
+        if (ingredient.getCategory() != null) original.setCategory(ingredient.getCategory());
+        if (ingredient.getName() != null) original.setName((ingredient.getName()));
+        if (ingredient.getOrigin() != null) original.setOrigin((ingredient.getOrigin()));
         ingredientRepository.save(original);
         return original;
     }
 
     public Ingredient putIngredient(Long id, Ingredient ingredient) {
-        if (!ingredientRepository.existsById(id)){
+        if (!ingredientRepository.existsById(id)) {
             return null;
         }
         checkIngredient(ingredient);
@@ -53,21 +53,25 @@ public class IngredientService {
     }
 
     public boolean removeIngredient(Long id) {
-        if(!ingredientRepository.existsById(id)) return false;
+        if (!ingredientRepository.existsById(id)) return false;
         Ingredient i = ingredientRepository.findById(id).get();
         var dishes = new HashSet<>(i.getDishes());
-        for(Dish d : dishes){
+        for (Dish d : dishes) {
             d.removeIngredient(i);
         }
         ingredientRepository.deleteById(id);
         return true;
     }
 
-    private void checkIngredient(Ingredient ingredient){
-        if((ingredient.getCategory() != null && ingredient.getCategory().isEmpty()) ||
-               (ingredient.getName() != null && ingredient.getName().isEmpty())||
-                (ingredient.getOrigin() != null && ingredient.getOrigin().isEmpty()))
-        {
+    private void checkIngredient(Ingredient ingredient) {
+        if(ingredient.getCategory() == null ||
+                ingredient.getName() == null ||
+                ingredient.getOrigin() == null) {
+            throw new MalformedParametersException("Los campos no pueden ser nulos");
+        }
+        if (ingredient.getCategory().isEmpty() ||
+                ingredient.getName().isEmpty() ||
+                ingredient.getOrigin().isEmpty()) {
             throw new MalformedParametersException("Los campos no pueden estar vacios");
         }
     }

@@ -37,7 +37,8 @@ public class DishRestController {
             dto.setName(dish.getName());
             dto.setCategory(dish.getCategory());
             dto.setPrice(dish.getPrice());
-            dto.setRestaurant(dish.getRestaurant().getId());
+            if(dish.getRestaurant() == null)dto.setRestaurant(-1L);
+            else dto.setRestaurant(dish.getRestaurant().getId());
             List<Long> ingredients = new ArrayList<>();
             for (Ingredient i : dish.getIngredients()) {
                 ingredients.add(i.getId());
@@ -79,6 +80,7 @@ public class DishRestController {
             dish.setCategory(dto.getCategory());
             dish.setPrice(dto.getPrice());
             dish.setRestaurant(restaurantService.getRestaurant(dto.getRestaurant()));
+            if(dto.getIngredients().length == 0)throw new MalformedParametersException();
             for (Long id : dto.getIngredients()) {
                 dish.addIngredient(ingredientService.getIngredient(id));
             }
