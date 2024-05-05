@@ -36,13 +36,13 @@ public class RestaurantService {
         }
         checkRestaurant(restaurant);
         Restaurant original = restaurantRepository.getReferenceById(id);
-        if(restaurant.getName() != null)original.setName(restaurant.getName());
-        if(restaurant.getStyle() != null)original.setStyle(restaurant.getStyle());
-        if(restaurant.getQuality() != null)original.setQuality(restaurant.getQuality());
-        if(restaurant.getLocation() != null)original.setLocation(restaurant.getLocation());
-        if(restaurant.getDishes() != null){
+        if (restaurant.getName() != null) original.setName(restaurant.getName());
+        if (restaurant.getStyle() != null) original.setStyle(restaurant.getStyle());
+        if (restaurant.getQuality() != null) original.setQuality(restaurant.getQuality());
+        if (restaurant.getLocation() != null) original.setLocation(restaurant.getLocation());
+        if (restaurant.getDishes() != null) {
             original.setDishes(restaurant.getDishes());
-        } else{
+        } else {
             Set<Dish> dishes = new HashSet<>();
             original.setDishes(dishes);
         }
@@ -52,7 +52,7 @@ public class RestaurantService {
         return original;
     }
 
-    public Restaurant putRestaurant(Long id, Restaurant restaurant){
+    public Restaurant putRestaurant(Long id, Restaurant restaurant) {
         if (!restaurantRepository.existsById(id)) {
             return null;
         }
@@ -63,22 +63,28 @@ public class RestaurantService {
     }
 
     public boolean removeRestaurant(Long id) {
-        if(!restaurantRepository.existsById(id)) return false;
-        for(Dish dish : restaurantRepository.findById(id).get().getDishes()){
+        if (!restaurantRepository.existsById(id)) return false;
+        for (Dish dish : restaurantRepository.findById(id).get().getDishes()) {
             dish.setRestaurant(null);
         }
         restaurantRepository.deleteById(id);
         return true;
     }
 
-    private void checkRestaurant(Restaurant restaurant){
-        if((restaurant.getName() != null && restaurant.getName().isEmpty()) ||
-                (restaurant.getLocation() != null && restaurant.getLocation().isEmpty()) ||
-                (restaurant.getStyle() != null && restaurant.getStyle().isEmpty()))
-        {
+    private void checkRestaurant(Restaurant restaurant) {
+        if(restaurant.getName() == null ||
+                restaurant.getLocation() == null ||
+                restaurant.getStyle() == null ||
+                restaurant.getQuality() == null) {
+            throw new MalformedParametersException("Los campos no pueden ser nulos");
+        }
+        if (restaurant.getName().isEmpty() ||
+                restaurant.getLocation().isEmpty() ||
+                restaurant.getStyle().isEmpty()
+        ) {
             throw new MalformedParametersException("Los campos no pueden estar vacios");
         }
-        else if(restaurant.getQuality() != null && (restaurant.getQuality() < 0 || restaurant.getQuality() > 10)){
+        if (restaurant.getQuality() < 0 || restaurant.getQuality() > 10) {
             throw new MalformedParametersException("La calidad debe estar entre 0 y 10");
         }
     }
