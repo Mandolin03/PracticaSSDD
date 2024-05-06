@@ -73,7 +73,7 @@ public class DishService {
                 dish.getName() == null) {
             throw new MalformedParametersException("Los campos no pueden estar vacios");
         }
-        if (dish.getCategory().isEmpty() ||dish.getName().isEmpty()) {
+        if (dish.getCategory().isEmpty() ||dish.getName().isEmpty() ||dish.getIngredients().isEmpty()) {
             throw new MalformedParametersException("Los campos no pueden estar vacios");
         }
         if (dish.getPrice() != null && dish.getPrice() < 0) {
