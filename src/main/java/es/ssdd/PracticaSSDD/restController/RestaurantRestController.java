@@ -6,6 +6,7 @@ import es.ssdd.PracticaSSDD.entities.Restaurant;
 import es.ssdd.PracticaSSDD.entities.RestaurantDTO;
 import es.ssdd.PracticaSSDD.service.DishService;
 import es.ssdd.PracticaSSDD.service.RestaurantService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -74,6 +75,7 @@ public class RestaurantRestController {
             restaurant.setStyle(dto.getStyle());
             restaurant.setQuality(dto.getQuality());
             restaurant.setLocation(dto.getLocation());
+            if(dto.getDishes() == null) throw new MalformedParametersException();
             List<Dish> dishes = new ArrayList<>();
             for (Long d : dto.getDishes()) {
                 Dish dish = dishService.getDish(d);
@@ -85,7 +87,7 @@ public class RestaurantRestController {
             restaurantService.createRestaurant(restaurant);
             dto.setId(restaurant.getId());
             return ResponseEntity.status(201).body(dto);
-        } catch (MalformedParametersException e) {
+        } catch (MalformedParametersException | EntityNotFoundException e) {
             return ResponseEntity.badRequest().build();
         }
     }

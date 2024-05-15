@@ -22,6 +22,8 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if(restaurantRepository.count() != 0 || dishRepository.count() != 0 ||ingredientRepository.count() != 0) return;
+
         Ingredient tomate = new Ingredient();
         tomate.setName("Tomate");
         tomate.setCategory("Fruta");
