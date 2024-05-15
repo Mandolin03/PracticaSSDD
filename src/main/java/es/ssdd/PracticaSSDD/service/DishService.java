@@ -70,13 +70,14 @@ public class DishService {
 
     private void checkDish(Dish dish) {
         if(dish.getCategory() == null ||
-                dish.getName() == null) {
+                dish.getName() == null ||
+                dish.getPrice() == null){
             throw new MalformedParametersException("Los campos no pueden estar vacios");
         }
         if (dish.getCategory().isEmpty() ||dish.getName().isEmpty() ||dish.getIngredients().isEmpty()) {
             throw new MalformedParametersException("Los campos no pueden estar vacios");
         }
-        if (dish.getPrice() != null && dish.getPrice() < 0) {
+        if (dish.getPrice() < 0) {
             throw new MalformedParametersException("El precio debe ser un real positvo");
         }
     }
