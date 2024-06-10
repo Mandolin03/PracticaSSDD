@@ -124,6 +124,7 @@ public class RestaurantRestController {
     public ResponseEntity<Void> patchRestaurant(@PathVariable Long id, @RequestBody RestaurantDTO dto) {
         Restaurant edited;
         try {
+            if(restaurantService.getRestaurant(id) == null) return ResponseEntity.notFound().build();
             Restaurant r = new Restaurant();
             r.setId(id);
             r.setName(dto.getName());
@@ -131,16 +132,20 @@ public class RestaurantRestController {
             r.setQuality(dto.getQuality());
             r.setLocation(dto.getLocation());
             List<Dish> dishes = new ArrayList<>();
-            for (Long d : dto.getDishes()) {
-                Dish dish = dishService.getDish(d);
-                if (dish.getRestaurant() != null && dish.getRestaurant().getId() != id)
-                    throw new MalformedParametersException();
-                dish.setRestaurant(r);
-                dishes.add(dish);
+            if(dto.getDishes() != null){
+                for (Long d : dto.getDishes()) {
+                    Dish dish = dishService.getDish(d);
+                    if (dish.getRestaurant() != null && dish.getRestaurant().getId() != id)
+                        throw new MalformedParametersException();
+                    dish.setRestaurant(r);
+                    dishes.add(dish);
+                }
             }
+
             r.setDishes(new HashSet<>(dishes));
             edited = restaurantService.editRestaurant(id, r);
-        } catch (MalformedParametersException | NullPointerException e) {
+        } catch (MalformedParametersException e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }
         if (edited == null) return ResponseEntity.notFound().build();

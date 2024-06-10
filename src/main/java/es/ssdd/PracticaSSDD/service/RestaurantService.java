@@ -34,7 +34,6 @@ public class RestaurantService {
         if (!restaurantRepository.existsById(id)) {
             return null;
         }
-        checkRestaurant(restaurant);
         Restaurant original = restaurantRepository.getReferenceById(id);
         if (restaurant.getName() != null) original.setName(restaurant.getName());
         if (restaurant.getStyle() != null) original.setStyle(restaurant.getStyle());
@@ -47,7 +46,7 @@ public class RestaurantService {
             original.setDishes(dishes);
         }
 
-
+        checkRestaurant(original);
         restaurantRepository.save(original);
         return original;
     }
@@ -82,7 +81,7 @@ public class RestaurantService {
                 restaurant.getLocation().isEmpty() ||
                 restaurant.getStyle().isEmpty()
         ) {
-            throw new MalformedParametersException("Los campos no pueden estar vacios");
+            throw new MalformedParametersException("Los campos no pueden estar vacios - REST");
         }
         if (restaurant.getQuality() < 0 || restaurant.getQuality() > 10) {
             throw new MalformedParametersException("La calidad debe estar entre 0 y 10");

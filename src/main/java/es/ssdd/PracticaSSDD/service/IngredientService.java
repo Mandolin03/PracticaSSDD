@@ -34,11 +34,11 @@ public class IngredientService {
         if (!ingredientRepository.existsById(id)) {
             return null;
         }
-        checkIngredient(ingredient);
         Ingredient original = ingredientRepository.findById(id).get();
         if (ingredient.getCategory() != null) original.setCategory(ingredient.getCategory());
         if (ingredient.getName() != null) original.setName((ingredient.getName()));
         if (ingredient.getOrigin() != null) original.setOrigin((ingredient.getOrigin()));
+        checkIngredient(original);
         ingredientRepository.save(original);
         return original;
     }
@@ -48,6 +48,7 @@ public class IngredientService {
             return null;
         }
         checkIngredient(ingredient);
+        ingredient.setId(id);
         ingredientRepository.save(ingredient);
         return ingredient;
     }
@@ -72,7 +73,7 @@ public class IngredientService {
         if (ingredient.getCategory().isEmpty() ||
                 ingredient.getName().isEmpty() ||
                 ingredient.getOrigin().isEmpty()) {
-            throw new MalformedParametersException("Los campos no pueden estar vacios");
+            throw new MalformedParametersException("Los campos no pueden estar vacios - ING");
         }
     }
 }

@@ -25,7 +25,7 @@ public class DishService {
     }
 
     public Dish getDish(Long id) {
-        return dishRepository.getReferenceById(id);
+        return dishRepository.findById(id).orElse(null);
     }
 
     public Collection<Dish> getDishes() {
@@ -37,7 +37,7 @@ public class DishService {
         if (!dishRepository.existsById(id)) {
             return null;
         }
-        checkDish(dish);
+
         Dish original = dishRepository.getReferenceById(id);
         if (dish.getCategory() != null) original.setCategory(dish.getCategory());
         if (dish.getName() != null) original.setName((dish.getName()));
@@ -45,6 +45,7 @@ public class DishService {
 
         original.setRestaurant(dish.getRestaurant());
         original.setIngredients(dish.getIngredients());
+        checkDish(original);
         dishRepository.save(original);
         return original;
     }
@@ -74,7 +75,7 @@ public class DishService {
                 dish.getPrice() == null){
             throw new MalformedParametersException("Los campos no pueden estar vacios");
         }
-        if (dish.getCategory().isEmpty() ||dish.getName().isEmpty() ||dish.getIngredients().isEmpty()) {
+        if (dish.getCategory().isEmpty() ||dish.getName().isEmpty() || dish.getIngredients().isEmpty()) {
             throw new MalformedParametersException("Los campos no pueden estar vacios");
         }
         if (dish.getPrice() < 0) {

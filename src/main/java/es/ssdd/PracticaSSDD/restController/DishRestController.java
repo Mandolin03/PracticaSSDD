@@ -103,7 +103,9 @@ public class DishRestController {
             dish.setPrice(dto.getPrice());
             dish.setRestaurant(restaurantService.getRestaurant(dto.getRestaurant()));
             for (Long i : dto.getIngredients()) {
-                dish.addIngredient(ingredientService.getIngredient(i));
+                var ing = ingredientService.getIngredient(i);
+                if(ing == null)throw new MalformedParametersException();
+                dish.addIngredient(ing);
             }
 
             editDish = dishService.putDish(id, dish);
@@ -122,6 +124,7 @@ public class DishRestController {
     public ResponseEntity<Void> patchDish(@PathVariable Long id, @RequestBody DishDTO dto) {
         Dish edited;
         try {
+            if(dishService.getDish(id) == null)return ResponseEntity.notFound().build();
             Dish dish = new Dish();
             dish.setName(dto.getName());
             dish.setCategory(dto.getCategory());
@@ -143,6 +146,8 @@ public class DishRestController {
             }
             edited = dishService.editDish(id, dish);
         } catch (MalformedParametersException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }
         if (edited == null) return ResponseEntity.notFound().build();
