@@ -94,61 +94,69 @@ public class RestaurantRestController {
 
     @PutMapping("/{id}")
     public ResponseEntity<RestaurantDTO> editRestaurant(@PathVariable Long id, @RequestBody RestaurantDTO dto) {
-        Restaurant original;
+        if(restaurantService.getRestaurant(id) == null) return ResponseEntity.notFound().build();
         try {
             Restaurant restaurant = new Restaurant();
-            restaurant.setId(dto.getId());
+            restaurant.setId(id);
             restaurant.setName(dto.getName());
             restaurant.setStyle(dto.getStyle());
             restaurant.setQuality(dto.getQuality());
             restaurant.setLocation(dto.getLocation());
-            List<Dish> dishes = new ArrayList<>();
-            for (Long d : dto.getDishes()) {
-                Dish dish = dishService.getDish(d);
-                if (dish.getRestaurant() != null && dish.getRestaurant().getId() != id)
-                    throw new MalformedParametersException();
-                dish.setRestaurant(restaurant);
-                dishes.add(dish);
+            restaurant.setDishes(new HashSet<>());
+            if(dto.getDishes() != null){
+                for (Long dishId : dto.getDishes()) {
+                    Dish dish = dishService.getDish(dishId);
+                    restaurant.addDish(dish);
+                }
             }
-            restaurant.setDishes(new HashSet<>(dishes));
-            dto.setId(id);
-            original = restaurantService.putRestaurant(id, restaurant);
+            Collection<Dish> dishes = dishService.getDishes();
+            dishes.removeAll(restaurant.getDishes());
+            for (Dish d : dishes){
+                if (d.getRestaurant() != null && d.getRestaurant().getId() == id){
+                    d.setRestaurant(null);
+                    dishService.editDish(d.getId(), d);
+                }
+            }
+
+            restaurantService.putRestaurant(restaurant.getId(), restaurant);
         } catch (MalformedParametersException | NullPointerException e) {
             return ResponseEntity.badRequest().build();
         }
-        if (original == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(dto);
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Void> patchRestaurant(@PathVariable Long id, @RequestBody RestaurantDTO dto) {
-        Restaurant edited;
+        if(restaurantService.getRestaurant(id) == null) return ResponseEntity.notFound().build();
         try {
-            if(restaurantService.getRestaurant(id) == null) return ResponseEntity.notFound().build();
-            Restaurant r = new Restaurant();
-            r.setId(id);
-            r.setName(dto.getName());
-            r.setStyle(dto.getStyle());
-            r.setQuality(dto.getQuality());
-            r.setLocation(dto.getLocation());
-            List<Dish> dishes = new ArrayList<>();
+            Restaurant restaurant = new Restaurant();
+            restaurant.setId(id);
+            restaurant.setName(dto.getName());
+            restaurant.setStyle(dto.getStyle());
+            restaurant.setQuality(dto.getQuality());
+            restaurant.setLocation(dto.getLocation());
             if(dto.getDishes() != null){
-                for (Long d : dto.getDishes()) {
-                    Dish dish = dishService.getDish(d);
-                    if (dish.getRestaurant() != null && dish.getRestaurant().getId() != id)
-                        throw new MalformedParametersException();
-                    dish.setRestaurant(r);
-                    dishes.add(dish);
+                restaurant.setDishes(new HashSet<>());
+                for (Long dishId : dto.getDishes()) {
+                    Dish dish = dishService.getDish(dishId);
+                    restaurant.addDish(dish);
+                }
+            }
+            Collection<Dish> dishes = dishService.getDishes();
+            dishes.removeAll(restaurant.getDishes());
+            for (Dish d : dishes){
+                if (d.getRestaurant() != null && d.getRestaurant().getId() == id){
+                    d.setRestaurant(null);
+                    dishService.editDish(d.getId(), d);
                 }
             }
 
-            r.setDishes(new HashSet<>(dishes));
-            edited = restaurantService.editRestaurant(id, r);
+            restaurantService.editRestaurant(restaurant.getId(), restaurant);
         } catch (MalformedParametersException e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }
-        if (edited == null) return ResponseEntity.notFound().build();
+
         return ResponseEntity.ok().build();
     }
 

@@ -34,16 +34,16 @@ public class RestaurantService {
         if (!restaurantRepository.existsById(id)) {
             return null;
         }
-        Restaurant original = restaurantRepository.getReferenceById(id);
+        Restaurant original = restaurantRepository.findById(id).get();
         if (restaurant.getName() != null) original.setName(restaurant.getName());
         if (restaurant.getStyle() != null) original.setStyle(restaurant.getStyle());
         if (restaurant.getQuality() != null) original.setQuality(restaurant.getQuality());
         if (restaurant.getLocation() != null) original.setLocation(restaurant.getLocation());
-        if (restaurant.getDishes() != null) {
+        if (restaurant.getDishes() != null && restaurant.getDishes().size() > 0){
+            System.out.println(restaurant.getDishes().size());
             original.setDishes(restaurant.getDishes());
         } else {
-            Set<Dish> dishes = new HashSet<>();
-            original.setDishes(dishes);
+            original.setDishes(new HashSet<>());
         }
 
         checkRestaurant(original);
